@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.americo.ddcharactersheet35.activity.CharacterActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/in_toolbar"
+        layout="@layout/toolbar" />
+
+    <com.americo.ddcharactersheet35.util.SlidingTabLayout
+        android:id="@+id/st_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@android:color/white"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

@@ -1,0 +1,333 @@
+#
+# generated on 2017/08/06 03:26:10
+#
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.Character
+tableName=character
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=race
+columnName=race_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=characterClasses
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionMaxEagerLevel=2
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=alignment
+# --field-end--
+# --field-start--
+fieldName=deity
+# --field-end--
+# --field-start--
+fieldName=size
+# --field-end--
+# --field-start--
+fieldName=age
+# --field-end--
+# --field-start--
+fieldName=gender
+# --field-end--
+# --field-start--
+fieldName=height
+# --field-end--
+# --field-start--
+fieldName=weight
+# --field-end--
+# --field-start--
+fieldName=eyes
+# --field-end--
+# --field-start--
+fieldName=hair
+# --field-end--
+# --field-start--
+fieldName=skin
+# --field-end--
+# --field-start--
+fieldName=level
+# --field-end--
+# --field-start--
+fieldName=experience
+# --field-end--
+# --field-start--
+fieldName=strength
+# --field-end--
+# --field-start--
+fieldName=dexterity
+# --field-end--
+# --field-start--
+fieldName=constitution
+# --field-end--
+# --field-start--
+fieldName=intelligence
+# --field-end--
+# --field-start--
+fieldName=wisdom
+# --field-end--
+# --field-start--
+fieldName=charisma
+# --field-end--
+# --field-start--
+fieldName=fortitude
+# --field-end--
+# --field-start--
+fieldName=reflex
+# --field-end--
+# --field-start--
+fieldName=will
+# --field-end--
+# --field-start--
+fieldName=fullHp
+columnName=full_hp
+# --field-end--
+# --field-start--
+fieldName=hp
+# --field-end--
+# --field-start--
+fieldName=speed
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.CharacterClasses
+tableName=character_classes
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=character
+columnName=character_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=classes
+columnName=classes_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=level
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.Race
+tableName=race
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.Spell
+tableName=spell
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+unique=true
+# --field-end--
+# --field-start--
+fieldName=spellLevel
+foreignCollection=true
+foreignCollectionEager=true
+foreignCollectionMaxEagerLevel=3
+# --field-end--
+# --field-start--
+fieldName=school
+# --field-end--
+# --field-start--
+fieldName=components
+# --field-end--
+# --field-start--
+fieldName=casting
+# --field-end--
+# --field-start--
+fieldName=range
+# --field-end--
+# --field-start--
+fieldName=area
+# --field-end--
+# --field-start--
+fieldName=duration
+# --field-end--
+# --field-start--
+fieldName=saving
+# --field-end--
+# --field-start--
+fieldName=resistance
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --field-start--
+fieldName=focus
+# --field-end--
+# --field-start--
+fieldName=notes
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.SpellLevel
+tableName=spell_level
+# --table-fields-start--
+# --field-start--
+fieldName=spell
+columnName=spell_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=spellcaster
+columnName=spellcaster_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.Spellcaster
+tableName=spellcaster
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=classes
+columnName=classes_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=circle
+columnName=circle
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.Item
+tableName=item
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=type
+# --field-end--
+# --field-start--
+fieldName=subType
+columnName=sub_type
+# --field-end--
+# --field-start--
+fieldName=weight
+# --field-end--
+# --field-start--
+fieldName=price
+# --field-end--
+# --field-start--
+fieldName=damage
+# --field-end--
+# --field-start--
+fieldName=critical
+# --field-end--
+# --field-start--
+fieldName=damageType
+columnName=damage_type
+# --field-end--
+# --field-start--
+fieldName=range
+# --field-end--
+# --field-start--
+fieldName=armor
+# --field-end--
+# --field-start--
+fieldName=maxDexterity
+columnName=max_dexterity
+# --field-end--
+# --field-start--
+fieldName=penalty
+# --field-end--
+# --field-start--
+fieldName=failure
+# --field-end--
+# --field-start--
+fieldName=description
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
+# --table-start--
+dataClass=com.americo.ddcharactersheet35.model.CharacterItem
+tableName=character_item
+# --table-fields-start--
+# --field-start--
+fieldName=id
+columnName=_id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=character
+columnName=character_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=item
+columnName=item_id
+foreign=true
+foreignAutoRefresh=true
+maxForeignAutoRefreshLevel=2
+# --field-end--
+# --field-start--
+fieldName=quantity
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

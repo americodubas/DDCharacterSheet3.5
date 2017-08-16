@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_spell_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="serif"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tv_spellcaster"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_school"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_components"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_casting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_range"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_duration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_saving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_resistance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+    <TextView
+        android:id="@+id/tv_spell_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:typeface="sans"
+        android:textSize="12sp"
+        android:textStyle="italic"/>
+
+</LinearLayout>
