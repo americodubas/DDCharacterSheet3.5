@@ -44,7 +44,7 @@ class DisplaySpellListActivity : AppCompatActivity() {
 
     fun displaySpell(view: View) {
         val intent = Intent(this, DisplaySpellActivity::class.java)
-        intent.putExtra("id", (view.findViewById(R.id.tv_spell_id) as TextView).text.toString())
+        intent.putExtra("id", view.findViewById<TextView>(R.id.tv_spell_id).text.toString())
         startActivity(intent)
     }
 
