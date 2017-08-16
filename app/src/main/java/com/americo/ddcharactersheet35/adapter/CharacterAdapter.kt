@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.activity.CharacterActivity
@@ -37,11 +38,11 @@ class CharacterAdapter(val context: Context, val characters: List<Character>): B
     }
 
     private fun showName(view: View, position: Int) {
-        (view.findViewById(R.id.tv_character_name) as TextView).text = characters[position].name
+        view.findViewById<TextView>(R.id.tv_character_name).text = characters[position].name
     }
 
     private fun chooseCharacterListener(view: View, position: Int) {
-        view.findViewById(R.id.iv_character).setOnClickListener {
+        view.findViewById<ImageView>(R.id.iv_character).setOnClickListener {
             val intent = Intent(context, CharacterActivity::class.java)
             intent.putExtra("id", characters[position].id.toString())
             context.startActivity(intent)

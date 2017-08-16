@@ -31,8 +31,8 @@ class CharacterClassesAdapter(val context: Context, val characterClasses: List<C
 
     private fun  showCharacter(view: View, position: Int) {
         val char = characterClasses[position]
-        (view.findViewById(R.id.tv_name) as TextView).text = char.classes.name
-        (view.findViewById(R.id.tv_level) as TextView).text = char.level.toString()
+        view.findViewById<TextView>(R.id.tv_name).text = char.classes.name
+        view.findViewById<TextView>(R.id.tv_level).text = char.level.toString()
     }
 
     override fun getItem(position: Int): Any {

@@ -14,9 +14,9 @@ import com.americo.ddcharactersheet35.R
 /**
  * Created by Americo on 08/05/2017.
  */
-inline fun <reified T: View> Activity.find(id: Int): T = findViewById(id) as T
+inline fun <reified T: View> Activity.find(id: Int): T = findViewById(id)
 
-inline fun <reified T: View> Fragment.find(id: Int): T = activity.findViewById(id) as T
+inline fun <reified T: View> Fragment.find(id: Int): T = activity.findViewById(id)
 
 fun TextView.textString(s: String){
     this.text = SpannableStringBuilder(s)

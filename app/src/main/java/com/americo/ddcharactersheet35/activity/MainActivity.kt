@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //TODO DELETE LATER
-        val spellCount = findViewById(R.id.tv_spell_count) as TextView
+        val spellCount = find<TextView>(R.id.tv_spell_count)
         spellCount.text = "Spell Count: ${DatabaseHelper(this).getSpellDao().queryForAll().size}"
 
         val spell = SpellService(this).getSpellById("1")
