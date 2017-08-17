@@ -1,14 +1,14 @@
 package com.americo.ddcharactersheet35.data
 
 import android.content.Context
-import android.util.ArrayMap
-import android.util.Log
 import com.americo.ddcharactersheet35.model.Spell
 import com.americo.ddcharactersheet35.model.Spellcaster
-import java.sql.SQLException
 
 /**
  * Created by Americo on 02/05/2017.
+ *
+ * Dao for table spell
+ *
  */
 
 class SpellDao(context: Context) {
