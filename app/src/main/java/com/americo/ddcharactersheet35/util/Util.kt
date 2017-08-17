@@ -32,12 +32,12 @@ fun AppCompatActivity.createToolbar(title: String) {
 }
 
 fun AppCompatActivity.optionSaveSelected(item: MenuItem?, id: String, intent: Intent): Boolean {
-    when (item?.itemId) {
+    return when (item?.itemId) {
         R.id.it_save -> {
             intent.putExtra("id", id)
             startActivity( intent )
             return true
         }
-        else -> return false
+        else -> false
     }
 }
