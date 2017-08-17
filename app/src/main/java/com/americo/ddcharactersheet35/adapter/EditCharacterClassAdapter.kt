@@ -7,14 +7,20 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
-import android.widget.Toast
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.service.CharacterService
+import com.americo.ddcharactersheet35.util.toast
 
 /**
  * Created by Americo on 27/05/2017.
+ *
+ * Adapter to show the character classes and to provide three options to edit the class
+ * 1- Increase class level
+ * 2- Decrease class level
+ * 3- Delete class
+ *
  */
 class EditCharacterClassAdapter(val context: Context, var characterClasses: List<CharacterClasses>): BaseAdapter() {
 
@@ -24,21 +30,20 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
         val view: View
         val char = characterClasses[position]
 
-        if (convertView == null){
-            view = inflater.inflate(R.layout.view_edit_character_class, parent, false)
-        }else{
-            view = convertView
+        view = when(convertView == null) {
+            true -> inflater.inflate(R.layout.view_edit_character_class, parent, false)
+            false -> convertView as View
         }
 
         showCharacterClass(view, char)
         increaseLevelListener(view, char)
         decreaseLevelListener(view, char)
-        removeListener(view, char, position)
+        deleteListener(view, char)
 
         return view
     }
 
-    private fun removeListener(view: View, char: CharacterClasses, position: Int) {
+    private fun deleteListener(view: View, char: CharacterClasses) {
         view.findViewById<ImageButton>(R.id.ib_remove).setOnClickListener {
             CharacterService(context).deleteCharacterClasses(char)
             characterClasses = characterClasses.minus(char)
@@ -52,10 +57,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
                 view.findViewById<TextView>(R.id.tv_level).text =
                         CharacterService(context).decreaseCharacterClassesLevel(char).level.toString()
             }catch (e: CannotDecreaseCharacterClassesLevel){
-                Toast.makeText(context,
-                        context.getString(R.string.cannot_decrease_level),
-                        Toast.LENGTH_LONG)
-                        .show()
+                toast(context, context.getString(R.string.cannot_decrease_level))
             }
         }
     }
