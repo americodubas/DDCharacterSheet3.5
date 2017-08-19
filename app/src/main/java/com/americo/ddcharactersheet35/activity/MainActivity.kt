@@ -21,11 +21,12 @@ class MainActivity : AppCompatActivity() {
 
         //TODO DELETE LATER
         val spellCount = find<TextView>(R.id.tv_spell_count)
-        spellCount.text = "Spell Count: ${DatabaseHelper(this).getSpellDao().queryForAll().size}"
+        val count = "Spell Count: ${DatabaseHelper(this).getSpellDao().queryForAll().size}"
+        spellCount.text = count
 
         val spell = SpellService(this).getSpellById("1")
-        val test =  find<TextView>(R.id.tv_test)
-        test.text = "${spell.name} - ${spell.allSpellcasters}"
+        val test =  "${spell.name} - ${spell.allSpellcasters}"
+        find<TextView>(R.id.tv_test).text = test
 
         find<Button>(R.id.bt_spell_filter).setOnClickListener {
             startActivity( Intent(this, SpellFilterActivity::class.java))
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showCharacters(){
-        val chars = CharacterService(this).getAllCharacters()
-        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, chars)
+        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, CharacterService(this).getAllCharacters())
     }
 }

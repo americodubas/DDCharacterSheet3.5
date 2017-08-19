@@ -1,17 +1,20 @@
 package com.americo.ddcharactersheet35.service
 
 import android.content.Context
-import android.util.Log
 import com.americo.ddcharactersheet35.data.CharacterDao
+import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.model.Character
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.model.Classes
 import com.americo.ddcharactersheet35.model.Race
-import java.util.TreeSet
+import com.americo.ddcharactersheet35.util.convertFromTo
+import java.util.*
 
 /**
  * Created by Americo on 27/05/2017.
+ *
+ * Service responsible for the [Character]
  */
 class CharacterService(val context: Context) {
 
@@ -21,19 +24,23 @@ class CharacterService(val context: Context) {
         return characterDao.getCharacter(id.toInt())
     }
 
-    fun getAllCharacters(): List<Character> {
-        val chars = characterDao.getAllCharacters()
-        Log.i("size", chars.size.toString())
-        return chars
+    fun getAllCharacters(): List<CharacterDto> {
+        return convertFromTo(characterDao.getAllCharacters())
     }
 
     fun insertEmptyCharacter(): Int {
         //TODO create blank char
-        var character = Character(name = "Hizagkuur", race = getDefaultRace())
+        var character = Character()
+        character.name = "Hizagkuur"
+        character.race = getDefaultRace()
         character = characterDao.insertCharacter(character)
-        characterDao.insertCharacterClass(CharacterClasses(character, getDefaultClass(), 1))
-        characterDao.insertCharacterClass(CharacterClasses(character, characterDao.getClasses(2), 2))
-        characterDao.insertCharacterClass(CharacterClasses(character, characterDao.getClasses(3), 3))
+
+        val characterClass = CharacterClasses()
+        characterClass.character = character
+        characterClass.classes = getDefaultClass()
+        characterClass.level = 1
+
+        characterDao.insertCharacterClass(characterClass)
         return character.id
     }
 

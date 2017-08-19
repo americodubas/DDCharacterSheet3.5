@@ -5,15 +5,17 @@ import com.j256.ormlite.table.DatabaseTable
 
 /**
  * Created by Americo on 21/06/2017.
+ *
+ * Entity of the race
  */
 
 @DatabaseTable(tableName = "race")
-class Race() {
+class Race {
 
     @DatabaseField(columnName = "_id", generatedId = true)
     var id: Int = 0
     @DatabaseField
-    lateinit var name: String
+    var name: String = ""
 
     override fun toString(): String {
         return name

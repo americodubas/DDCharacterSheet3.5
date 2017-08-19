@@ -7,8 +7,9 @@ import com.americo.ddcharactersheet35.model.Spellcaster
 
 /**
  * Created by Americo on 01/05/2017.
+ *
+ * Service responsible for the [Spell]
  */
-
 class SpellService(val context: Context) {
 
     fun getSpellsByNameClassCircle(name: String, spellClass: String, circle: String): MutableList<HashMap<String, String>> {
@@ -36,17 +37,6 @@ class SpellService(val context: Context) {
             str.append("${it.spellcaster.classes.name} ${it.spellcaster.circle}")
         }
 
-
-        //TODO delete
-//        for (spellcaster in spellcasters) {
-//            if (str.isNotEmpty()) {
-//                //separator for the next caster
-//                str.append(", ")
-//            }
-//            str.append(spellcaster.classes)
-//                    .append(" ")
-//                    .append(spellcaster.circle)
-//        }
         return str.toString()
     }
 

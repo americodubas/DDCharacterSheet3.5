@@ -10,12 +10,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.activity.CharacterActivity
+import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.model.Character
 
 /**
  * Created by Americo on 27/05/2017.
+ *
+ * Adapter to show characters.
+ * Sets a click listener to start the [CharacterActivity] of the chosen one.
+ *
  */
-class CharacterAdapter(val context: Context, val characters: List<Character>): BaseAdapter() {
+class CharacterAdapter(val context: Context, val characters: List<CharacterDto>): BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
