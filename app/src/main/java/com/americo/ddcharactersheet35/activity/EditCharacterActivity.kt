@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.*
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ListView
+import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
 import com.americo.ddcharactersheet35.service.CharacterService
@@ -64,11 +67,14 @@ class EditCharacterActivity : AppCompatActivity() {
         return optionSaveSelected(item, id, Intent(this, CharacterActivity::class.java))
     }
 
+    /**
+     * Get fields from the xml and updates the character.
+     */
     private fun updateCharacter() {
         val service = CharacterService(this)
-        val char = service.getCharacter(id)
+        val characterDto = service.getCharacter(id)
 
-        with(char) {
+        with(characterDto) {
             name = find<EditText>(R.id.et_character_name).text.toString()
             level = find<TextView>(R.id.tv_character_level).text.toString().toInt()
             experience = find<EditText>(R.id.et_character_experience).text.toString().toInt()
@@ -83,13 +89,13 @@ class EditCharacterActivity : AppCompatActivity() {
             eyes = find<EditText>(R.id.et_character_eyes).text.toString()
             hair = find<EditText>(R.id.et_character_hair).text.toString()
         }
-        service.updateCharacter(char)
+        service.updateCharacter(characterDto)
     }
 
     private fun showCharacter() {
-        val char = CharacterService(this).getCharacter(id)
+        val characterDto = CharacterService(this).getCharacter(id)
 
-        with(char){
+        with(characterDto){
             find<EditText>(R.id.et_character_name).textString(name)
             find<TextView>(R.id.tv_character_level).textString(level)
             find<EditText>(R.id.et_character_experience).textString(experience)
@@ -106,7 +112,7 @@ class EditCharacterActivity : AppCompatActivity() {
             find<EditText>(R.id.et_character_race).textString(race.name)
         }
 
-        find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this, char.characterClasses.toList())
+        find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this, characterDto.characterClasses.toList())
 
     }
 

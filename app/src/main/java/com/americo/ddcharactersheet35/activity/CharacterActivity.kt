@@ -12,6 +12,7 @@ import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.TabAdapter
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.SlidingTabLayout
+import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.find
 
 class CharacterActivity : AppCompatActivity() {
@@ -25,21 +26,17 @@ class CharacterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_character)
 
         id = intent.getStringExtra("id")
-
-        createToolbar()
-
         createSlidingTab()
     }
 
     override fun onResume() {
-        setCharacterNameOnToolbar()
+        createToolbar(CharacterService(this).getCharacter(id).name)
         super.onResume()
     }
 
-    private fun setCharacterNameOnToolbar() {
-        find<Toolbar>(R.id.in_toolbar).title = CharacterService(this).getCharacter(id).name
-    }
-
+    /**
+     * Creates the sliding tab on the [R.id.vp_page].
+     */
     private fun createSlidingTab() {
         val viewPager = find<ViewPager>(R.id.vp_page)
         viewPager.adapter = TabAdapter(supportFragmentManager, id)
@@ -50,15 +47,18 @@ class CharacterActivity : AppCompatActivity() {
         slidingTab.setViewPager(viewPager)
     }
 
-    private fun createToolbar() {
-        setSupportActionBar(find<Toolbar>(R.id.in_toolbar))
-    }
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
 
+    /**
+     * Function responsible to control the option that was clicked on the menu.
+     *
+     * If [R.id.it_edit] was clicked it will start the new [EditCharacterActivity].
+     * If [R.id.it_change_char] was clicked it will start the new [MainActivity].
+     * If [R.id.it_settings] was clicked it will start the new ?.
+     */
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.it_edit -> {

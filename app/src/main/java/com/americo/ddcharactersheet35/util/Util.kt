@@ -18,12 +18,12 @@ import org.modelmapper.ModelMapper
 //File to keep functions to make my life easier and to try new stuff
 
 /**
- * Shortcut to call findViewById on [Activity]
+ * Shortcut to call findViewById on [Activity].
  */
 inline fun <reified T: View> Activity.find(id: Int): T = findViewById(id)
 
 /**
- * Shortcut to call findViewById on [Fragment]
+ * Shortcut to call findViewById on [Fragment].
  */
 inline fun <reified T: View> Fragment.find(id: Int): T = activity.findViewById(id)
 
@@ -51,14 +51,14 @@ inline fun <F, reified T> convertFromTo(f: List<F>): List<T> {
 }
 
 /**
- * Shortcut to set a [String] on a [TextView]
+ * Shortcut to set a [String] on a [TextView].
  */
 fun TextView.textString(s: String){
     this.text = SpannableStringBuilder(s)
 }
 
 /**
- * Shortcut to set an [Int] on a [TextView]
+ * Shortcut to set an [Int] on a [TextView].
  */
 fun TextView.textString(s: Int){
     this.text = SpannableStringBuilder(s.toString())

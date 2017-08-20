@@ -10,6 +10,7 @@ class CharacterClassDto {
 
     var id: Int = 0
     lateinit  var character: CharacterDto
+    lateinit var classes: ClassDto
     var level: Int = 0
 
 }

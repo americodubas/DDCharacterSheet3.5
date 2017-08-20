@@ -40,6 +40,9 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
     }
 
+    /**
+     * Creates a listener to insert a new character and starts the [CharacterActivity] with the new id.
+     */
     private fun newCharacterListener() {
         find<Button>(R.id.bt_new_character).setOnClickListener{
             val intent = Intent(this, CharacterActivity::class.java)
@@ -48,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Show all characters on the [R.id.gv_character].
+     */
     private fun showCharacters(){
         find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, CharacterService(this).getAllCharacters())
     }

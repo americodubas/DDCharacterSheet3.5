@@ -2,6 +2,7 @@ package com.americo.ddcharactersheet35.service
 
 import android.content.Context
 import com.americo.ddcharactersheet35.data.CharacterDao
+import com.americo.ddcharactersheet35.dto.CharacterClassDto
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.model.Character
@@ -21,10 +22,10 @@ class CharacterService(val context: Context) {
     private val characterDao = CharacterDao(context)
 
     /**
-     * Returns a [Character] by [id].
+     * Returns a [CharacterDto] by [id].
      */
-    fun getCharacter(id: String): Character {
-        return characterDao.getCharacter(id.toInt())
+    fun getCharacter(id: String): CharacterDto {
+        return convertFromTo(characterDao.getCharacter(id.toInt()))
     }
 
     /**
@@ -63,10 +64,10 @@ class CharacterService(val context: Context) {
     private fun getDefaultClass() = characterDao.getClasses(1)
 
     /**
-     * Update the [Character].
+     * Update the [CharacterDto].
      */
-    fun updateCharacter(character: Character) {
-        characterDao.updateCharacter(character)
+    fun updateCharacter(characterDto: CharacterDto) {
+        characterDao.updateCharacter(convertFromTo(characterDto))
     }
 
     /**
@@ -108,36 +109,36 @@ class CharacterService(val context: Context) {
     }
 
     /**
-     * Delete the relation of [CharacterClasses].
+     * Delete the relation of [CharacterClassDto].
      */
-    fun deleteCharacterClasses(characterClasses: CharacterClasses){
-        characterDao.deleteCharacterClass(characterClasses)
+    fun deleteCharacterClasses(characterClasses: CharacterClassDto){
+        characterDao.deleteCharacterClass(convertFromTo(characterClasses))
     }
 
     /**
-     * Increase the level of the [CharacterClasses] by + 1.
+     * Increase the level of the [CharacterClassDto] by + 1.
      */
-    fun increaseCharacterClassesLevel(characterClasses: CharacterClasses) : CharacterClasses {
-        characterClasses.level += 1
-        characterDao.updateCharacterClass(characterClasses)
-        return characterClasses
+    fun increaseCharacterClassesLevel(characterClassDto: CharacterClassDto) : CharacterClassDto {
+        characterClassDto.level += 1
+        characterDao.updateCharacterClass(convertFromTo(characterClassDto))
+        return characterClassDto
     }
 
     /**
-     * Decrease the level of the [CharacterClasses] by - 1.
-     * The level won't be decreased if the [CharacterClasses] level is 1,
+     * Decrease the level of the [CharacterClassDto] by - 1.
+     * The level won't be decreased if the [CharacterClassDto] level is 1,
      * a [CannotDecreaseCharacterClassesLevel] will be throw.
      */
-    fun decreaseCharacterClassesLevel(characterClasses: CharacterClasses) : CharacterClasses {
-        if (!canDecreaseLevel(characterClasses)) throw CannotDecreaseCharacterClassesLevel()
-        characterClasses.level -= 1
-        characterDao.updateCharacterClass(characterClasses)
-        return characterClasses
+    fun decreaseCharacterClassesLevel(characterClassDto: CharacterClassDto) : CharacterClassDto {
+        if (!canDecreaseLevel(characterClassDto)) throw CannotDecreaseCharacterClassesLevel()
+        characterClassDto.level -= 1
+        characterDao.updateCharacterClass(convertFromTo(characterClassDto))
+        return characterClassDto
     }
 
     /**
-     * Verify if the [CharacterClasses] can be decreased, the minimum level is 1.
+     * Verify if the [CharacterClassDto] can be decreased, the minimum level is 1.
      */
-    private fun canDecreaseLevel(characterClasses: CharacterClasses) = characterClasses.level > 1
+    private fun canDecreaseLevel(characterClassDto: CharacterClassDto) = characterClassDto.level > 1
 
 }
