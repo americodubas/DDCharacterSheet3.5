@@ -6,11 +6,11 @@ package com.americo.ddcharactersheet35.dto
  * Dto to bring Character's Class data to the view
  *
  */
-class CharacterClassDto {
+class CharacterClassesDto {
 
     var id: Int = 0
     lateinit  var character: CharacterDto
-    lateinit var classes: ClassDto
+    lateinit var classes: ClassesDto
     var level: Int = 0
 
 }

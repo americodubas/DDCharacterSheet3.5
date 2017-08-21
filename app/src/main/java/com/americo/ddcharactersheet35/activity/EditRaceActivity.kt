@@ -8,9 +8,10 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import com.americo.ddcharactersheet35.R
-import com.americo.ddcharactersheet35.model.Character
-import com.americo.ddcharactersheet35.model.Race
+import com.americo.ddcharactersheet35.dto.CharacterDto
+import com.americo.ddcharactersheet35.dto.RaceDto
 import com.americo.ddcharactersheet35.service.CharacterService
+import com.americo.ddcharactersheet35.service.RaceService
 import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.optionSaveSelected
@@ -19,8 +20,8 @@ class EditRaceActivity : AppCompatActivity() {
 
     companion object{
         lateinit var id: String
-        lateinit var races: List<Race>
-        lateinit var character: Character
+        lateinit var races: List<RaceDto>
+        lateinit var character: CharacterDto
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +42,14 @@ class EditRaceActivity : AppCompatActivity() {
     }
 
     private fun editRace() {
-        character.race = find<Spinner>(R.id.sp_character_race).selectedItem as (Race)
+        character.race = find<Spinner>(R.id.sp_character_race).selectedItem as (RaceDto)
         CharacterService(this).updateCharacter(character)
     }
 
-    fun setRaces() {
-        races = CharacterService(this).getAllRaces()
+    private fun setRaces() {
+        races = RaceService(this).getAllRaces()
         find<Spinner>(R.id.sp_character_race).adapter =
-                ArrayAdapter<Race>(this,R.layout.support_simple_spinner_dropdown_item,races)
+                ArrayAdapter<RaceDto>(this,R.layout.support_simple_spinner_dropdown_item,races)
     }
 
     override fun onResume() {

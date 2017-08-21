@@ -9,21 +9,22 @@ import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Spinner
 import com.americo.ddcharactersheet35.R
-import com.americo.ddcharactersheet35.model.Character
-import com.americo.ddcharactersheet35.model.CharacterClasses
-import com.americo.ddcharactersheet35.model.Classes
+import com.americo.ddcharactersheet35.dto.CharacterClassesDto
+import com.americo.ddcharactersheet35.dto.CharacterDto
+import com.americo.ddcharactersheet35.dto.ClassesDto
+import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.optionSaveSelected
 import com.americo.ddcharactersheet35.util.textString
 
-class AddCharacterClassActivity : AppCompatActivity() {
+class AddCharacterClassesActivity : AppCompatActivity() {
 
     companion object{
         lateinit var id: String
-        lateinit var classes: List<Classes>
-        lateinit var character: Character
+        lateinit var classes: List<ClassesDto>
+        lateinit var character: CharacterDto
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,16 +39,16 @@ class AddCharacterClassActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        addCharacterClass()
+        addCharacterClasses()
         return optionSaveSelected(item, id, Intent(this, EditCharacterActivity::class.java))
     }
 
-    private fun addCharacterClass() {
-        var characterClass = CharacterClasses()
+    private fun addCharacterClasses() {
+        val characterClass = CharacterClassesDto()
         characterClass.character = character
-        characterClass.classes = find<Spinner>(R.id.sp_class).selectedItem as (Classes)
+        characterClass.classes = find<Spinner>(R.id.sp_class).selectedItem as (ClassesDto)
         characterClass.level = find<EditText>(R.id.et_level).text.toString().toInt()
-        CharacterService(this).insertCharacterClasses(characterClass)
+        CharacterClassesService(this).insertCharacterClasses(characterClass)
     }
 
     override fun onResume() {
@@ -62,9 +63,9 @@ class AddCharacterClassActivity : AppCompatActivity() {
         find<EditText>(R.id.et_level).textString(1)
     }
 
-    fun setClasses() {
-        classes = CharacterService(this).getNotUsedClasses(character)
+    private fun setClasses() {
+        classes = CharacterClassesService(this).getNotUsedClasses(character)
         find<Spinner>(R.id.sp_class).adapter =
-                ArrayAdapter<Classes>(this,R.layout.support_simple_spinner_dropdown_item, classes)
+                ArrayAdapter<ClassesDto>(this,R.layout.support_simple_spinner_dropdown_item, classes)
     }
 }

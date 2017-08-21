@@ -31,7 +31,7 @@ class EditCharacterActivity : AppCompatActivity() {
         addClassListener()
     }
 
-    fun editRaceListener() {
+    private fun editRaceListener() {
         find<ImageButton>(R.id.ib_race).setOnClickListener{
             val intent = Intent(this, EditRaceActivity::class.java)
             intent.putExtra("id", id)
@@ -39,9 +39,9 @@ class EditCharacterActivity : AppCompatActivity() {
         }
     }
 
-    fun addClassListener() {
+    private fun addClassListener() {
         find<ImageButton>(R.id.ib_add_class).setOnClickListener{
-            val intent = Intent(this, AddCharacterClassActivity::class.java)
+            val intent = Intent(this, AddCharacterClassesActivity::class.java)
             intent.putExtra("id", id)
             startActivity( intent )
         }

@@ -6,8 +6,9 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.americo.ddcharactersheet35.R
-import com.americo.ddcharactersheet35.model.Classes
-import com.americo.ddcharactersheet35.service.CharacterService
+import com.americo.ddcharactersheet35.dto.ClassesDto
+import com.americo.ddcharactersheet35.service.CharacterClassesService
+import com.americo.ddcharactersheet35.service.ClassesService
 import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.optionSaveSelected
 import java.util.ArrayList
@@ -17,7 +18,7 @@ class EditClassesActivity : AppCompatActivity() {
     companion object {
         lateinit var id: String
         lateinit var classes_id: String
-        lateinit var allClasses: List<Classes>
+        lateinit var allClasses: List<ClassesDto>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,21 +47,19 @@ class EditClassesActivity : AppCompatActivity() {
 
     private fun setAvailableClasses() {
         //TODO put it on service
-        val availableClasses = ArrayList<Classes>()
-        var usedClasses = CharacterService(this).getCharacterClasses(id)
+        val availableClasses = ArrayList<ClassesDto>()
+        val usedClasses = CharacterClassesService(this).getCharacterClasses(id)
 
         allClasses.forEach {
-
             if(it.id == classes_id.toInt() || usedClasses.indexOf(it) == -1){
                 availableClasses.add(it)
             }
-
         }
         //TODO put it on adapter
     }
 
     private fun getAllClasses() {
-         allClasses = CharacterService(this).getAllClasses()
+         allClasses = ClassesService(this).getAllClasses()
     }
 
 }

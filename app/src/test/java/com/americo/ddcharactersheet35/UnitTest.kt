@@ -1,13 +1,10 @@
 package com.americo.ddcharactersheet35
 
 import com.americo.ddcharactersheet35.data.createOrmLiteConfigFile
-import com.americo.ddcharactersheet35.dto.CharacterClassDto
-import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.model.Character
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.model.Classes
 import com.americo.ddcharactersheet35.model.Race
-import com.americo.ddcharactersheet35.util.convertFromTo
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.File

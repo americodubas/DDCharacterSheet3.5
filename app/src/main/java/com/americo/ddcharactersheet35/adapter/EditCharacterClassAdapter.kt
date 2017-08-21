@@ -8,9 +8,9 @@ import android.widget.BaseAdapter
 import android.widget.ImageButton
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
-import com.americo.ddcharactersheet35.dto.CharacterClassDto
+import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
-import com.americo.ddcharactersheet35.model.CharacterClasses
+import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.toast
 
@@ -23,7 +23,7 @@ import com.americo.ddcharactersheet35.util.toast
  * 3- Delete class
  *
  */
-class EditCharacterClassAdapter(val context: Context, var characterClasses: List<CharacterClassDto>): BaseAdapter() {
+class EditCharacterClassAdapter(val context: Context, var characterClasses: List<CharacterClassesDto>): BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
@@ -47,9 +47,9 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
     /**
      * Delete the relation of the characterClass.
      */
-    private fun deleteListener(view: View, char: CharacterClassDto) {
+    private fun deleteListener(view: View, char: CharacterClassesDto) {
         view.findViewById<ImageButton>(R.id.ib_remove).setOnClickListener {
-            CharacterService(context).deleteCharacterClasses(char)
+            CharacterClassesService(context).deleteCharacterClasses(char)
             characterClasses = characterClasses.minus(char)
             notifyDataSetChanged()
         }
@@ -58,11 +58,11 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
     /**
      * Decrease the level of the characterClass.
      */
-    private fun decreaseLevelListener(view: View, char: CharacterClassDto) {
+    private fun decreaseLevelListener(view: View, char: CharacterClassesDto) {
         view.findViewById<ImageButton>(R.id.ib_decrease).setOnClickListener {
             try {
                 view.findViewById<TextView>(R.id.tv_level).text =
-                        CharacterService(context).decreaseCharacterClassesLevel(char).level.toString()
+                        CharacterClassesService(context).decreaseCharacterClassesLevel(char).level.toString()
             }catch (e: CannotDecreaseCharacterClassesLevel){
                 toast(context, context.getString(R.string.cannot_decrease_level))
             }
@@ -72,17 +72,17 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
     /**
      * Increase the level of the characterClass.
      */
-    private fun increaseLevelListener(view: View, char: CharacterClassDto) {
+    private fun increaseLevelListener(view: View, char: CharacterClassesDto) {
         view.findViewById<ImageButton>(R.id.ib_increase).setOnClickListener {
             view.findViewById<TextView>(R.id.tv_level).text =
-                    CharacterService(context).increaseCharacterClassesLevel(char).level.toString()
+                    CharacterClassesService(context).increaseCharacterClassesLevel(char).level.toString()
         }
     }
 
     /**
      * Show the data of the characterClass.
      */
-    private fun showCharacterClass(view: View, char: CharacterClassDto) {
+    private fun showCharacterClass(view: View, char: CharacterClassesDto) {
         with(char){
             view.findViewById<TextView>(R.id.tv_id).text = id.toString()
             view.findViewById<TextView>(R.id.tv_name).text = classes.name

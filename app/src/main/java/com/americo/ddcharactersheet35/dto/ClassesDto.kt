@@ -6,7 +6,7 @@ package com.americo.ddcharactersheet35.dto
  * Dto to bring Class data to the view.
  *
  */
-class ClassDto {
+class ClassesDto {
     var id: Int = 0
     var name: String = ""
     var spellcaster: Int = 0
