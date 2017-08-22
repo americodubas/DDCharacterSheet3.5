@@ -7,12 +7,14 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
-import com.americo.ddcharactersheet35.model.CharacterClasses
+import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 
 /**
  * Created by Americo on 05/08/2017.
+ *
+ * Adapter to show the character classes.
  */
-class CharacterClassesAdapter(val context: Context, val characterClasses: List<CharacterClasses>) : BaseAdapter() {
+class CharacterClassesAdapter(val context: Context, val characterClasses: List<CharacterClassesDto>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
