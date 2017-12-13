@@ -16,9 +16,6 @@ import com.americo.ddcharactersheet35.util.textString
 
 /**
  * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [CharacterFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
  * Use the [CharacterFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -28,16 +25,21 @@ class CharacterFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         if (arguments != null) {
-            id = arguments.getString(ID)
+            id = arguments!!.getString(ID)
         }
     }
 
     override fun onResume() {
         super.onResume()
 
-        var char = CharacterService(context).getCharacter(id)
-        with(char){
+        if (context == null){
+            return
+        }
+
+        val char = CharacterService(context!!).getCharacter(id)
+        with(char) {
             find<TextView>(R.id.tv_character_name).text = name
             find<TextView>(R.id.tv_character_race).text = race.name
             find<TextView>(R.id.tv_character_level).textString(level)
@@ -54,14 +56,13 @@ class CharacterFragment : Fragment() {
             find<TextView>(R.id.tv_character_hair).text = hair
         }
 
-        find<ListView>(R.id.lv_classes).adapter = CharacterClassesAdapter(context, char.characterClasses.toList())
-
+        find<ListView>(R.id.lv_classes).adapter = CharacterClassesAdapter(context!!, char.characterClasses.toList())
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_character, container, false)
+        return inflater.inflate(R.layout.fragment_character, container, false)
     }
 
     companion object {

@@ -9,9 +9,6 @@ import com.americo.ddcharactersheet35.R
 
 /**
  * A simple [Fragment] subclass.
- * Activities that contain this fragment must implement the
- * [NotesFragment.OnFragmentInteractionListener] interface
- * to handle interaction events.
  * Use the [NotesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
@@ -24,15 +21,15 @@ class NotesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (arguments != null) {
-            mParam1 = arguments.getString(ARG_PARAM1)
-            mParam2 = arguments.getString(ARG_PARAM2)
+            mParam1 = arguments!!.getString(ARG_PARAM1)
+            mParam2 = arguments!!.getString(ARG_PARAM2)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater!!.inflate(R.layout.fragment_notes, container, false)
+        return inflater.inflate(R.layout.fragment_notes, container, false)
     }
 
     companion object {
