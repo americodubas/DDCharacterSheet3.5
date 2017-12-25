@@ -2,17 +2,17 @@ package com.americo.ddcharactersheet35.data
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.americo.ddcharactersheet35.model.*
-import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper
-import com.j256.ormlite.dao.RuntimeExceptionDao
-import com.j256.ormlite.support.ConnectionSource
 import java.io.FileOutputStream
 
 /**
  * Created by Americo on 08/04/2017.
+ *
+ * Database helper
+ *
  */
-class DatabaseHelper (var myContext: Context) : OrmLiteSqliteOpenHelper(myContext, DatabaseHelper.DB_NAME, null, DatabaseHelper.DB_VERSION) {
+class DatabaseHelper (var myContext: Context) : SQLiteOpenHelper(myContext, DatabaseHelper.DB_NAME, null, DatabaseHelper.DB_VERSION) {
 
     companion object {
         private val DB_NAME = "ded35"
@@ -23,7 +23,6 @@ class DatabaseHelper (var myContext: Context) : OrmLiteSqliteOpenHelper(myContex
 
     init {
         this.dataBaseFullPath = "/data/data/${myContext.packageName}/databases/$DB_NAME"
-
         verifyDatabase()
     }
 
@@ -58,42 +57,12 @@ class DatabaseHelper (var myContext: Context) : OrmLiteSqliteOpenHelper(myContex
         Log.i("copy", "*** Copy finished!")
     }
 
-    override fun onCreate(sqLiteDatabase: SQLiteDatabase, connectionSource: ConnectionSource) {
+    override fun onCreate(p0: SQLiteDatabase?) {
 
     }
 
-    override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, connectionSource: ConnectionSource, i: Int, i1: Int) {
+    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
 
-    }
-
-    //***** DAOS *****
-
-    fun getCharacterDao(): RuntimeExceptionDao<Character, Int> {
-        return getRuntimeExceptionDao(Character::class.java)
-    }
-
-    fun getCharacterClassesDao(): RuntimeExceptionDao<CharacterClasses, Int> {
-        return getRuntimeExceptionDao(CharacterClasses::class.java)
-    }
-
-    fun getClassesDao(): RuntimeExceptionDao<Classes, Int> {
-        return getRuntimeExceptionDao(Classes::class.java)
-    }
-
-    fun getRaceDao(): RuntimeExceptionDao<Race, Int> {
-        return getRuntimeExceptionDao(Race::class.java)
-    }
-
-    fun getSpellDao(): RuntimeExceptionDao<Spell, Int> {
-        return getRuntimeExceptionDao(Spell::class.java)
-    }
-
-    fun getSpellLevelDao(): RuntimeExceptionDao<SpellLevel, Int> {
-        return getRuntimeExceptionDao(SpellLevel::class.java)
-    }
-
-    fun getSpellcasterDao(): RuntimeExceptionDao<Spellcaster, Int> {
-        return getRuntimeExceptionDao(Spellcaster::class.java)
     }
 
 }
