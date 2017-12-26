@@ -25,7 +25,7 @@ inline fun <reified T: View> Activity.find(id: Int): T = findViewById(id)
 /**
  * Shortcut to call findViewById on [Fragment].
  */
-inline fun <reified T: View> Fragment.find(id: Int): T = activity.findViewById(id)
+inline fun <reified T: View> Fragment.find(id: Int): T = activity!!.findViewById(id)
 
 /**
  * Returns an object from [T] class with properties from the object of the [F] class
@@ -33,7 +33,7 @@ inline fun <reified T: View> Fragment.find(id: Int): T = activity.findViewById(i
  *
  * Works as an universal converter between Entities and DTOs.
  */
-inline fun <F, reified T> convertFromTo(e: F) = ModelMapper().map(e, T::class.java)
+inline fun <F, reified T> convertFromTo( e: F): T = ModelMapper().map(e, T::class.java)
 
 /**
  * Returns a [ArrayList] from [T] class with properties from the [ArrayList] of the [F] class

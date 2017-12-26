@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.data
 
-import android.content.Context
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Query
 import com.americo.ddcharactersheet35.model.Classes
 
 /**
@@ -8,21 +9,13 @@ import com.americo.ddcharactersheet35.model.Classes
  *
  * DAO responsible for the [Classes].
  */
-class ClassesDao(context: Context) {
+@Dao
+interface ClassesDao {
 
-    private val db = DatabaseHelper(context)
+    @Query("select * from classes where _id = :id")
+    fun getClasses(id: Long): Classes
 
-    /**
-     * Returns a [Classes] by id
-     */
-    fun  getClasses(id: Int): Classes {
-        return db.getClassesDao().queryForId(id)
-    }
+    @Query("select * from classes")
+    fun getAllClasses(): List<Classes>
 
-    /**
-     * Returns a [List] of all [Classes]
-     */
-    fun getAllClasses(): List<Classes> {
-        return db.getClassesDao().queryForAll()
-    }
 }

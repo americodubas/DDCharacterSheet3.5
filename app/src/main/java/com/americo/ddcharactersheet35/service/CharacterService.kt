@@ -1,11 +1,10 @@
 package com.americo.ddcharactersheet35.service
 
 import android.content.Context
-import com.americo.ddcharactersheet35.data.CharacterDao
+import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.model.Character
 import com.americo.ddcharactersheet35.util.convertFromTo
-import java.util.*
 
 /**
  * Created by Americo on 27/05/2017.
@@ -14,13 +13,13 @@ import java.util.*
  */
 class CharacterService(val context: Context) {
 
-    private val characterDao = CharacterDao(context)
+    private val characterDao = DatabaseHelper.getInstance(context).characterDao()
 
     /**
      * Returns a [CharacterDto] by [id].
      */
     fun getCharacter(id: String): CharacterDto {
-        return convertFromTo(characterDao.getCharacter(id.toInt()))
+        return convertFromTo(characterDao.getCharacter(id.toLong()))
     }
 
     /**
@@ -33,11 +32,11 @@ class CharacterService(val context: Context) {
     /**
      * Insert an empty [Character] with default values.
      */
-    fun insertEmptyCharacter(): Int {
+    fun insertEmptyCharacter(): Long {
         var character = Character()
         character.name = "Unknown"
-        character.race = RaceService(context).getDefaultRace()
-        character = characterDao.insertCharacter(character)
+//        character.race = RaceService(context).getDefaultRace()
+        character.id = characterDao.insertCharacter(character)
 
         CharacterClassesService(context).insertDefaultCharacterClasses(character)
         return character.id

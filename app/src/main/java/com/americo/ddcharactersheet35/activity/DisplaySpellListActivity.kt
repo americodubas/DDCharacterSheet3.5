@@ -9,6 +9,7 @@ import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.model.Spell
 import com.americo.ddcharactersheet35.service.SpellService
 import com.americo.ddcharactersheet35.util.find
 
@@ -22,11 +23,13 @@ class DisplaySpellListActivity : AppCompatActivity() {
 
     private fun showSpells() {
 
-        val spells = SpellService(this).getSpellsByNameClassCircle(
-                intent.getStringExtra("name"),
-                intent.getStringExtra("class"),
-                intent.getStringExtra("circle")
-        )
+//        val spells = SpellService(this).getSpellsByNameClassCircle(
+//                intent.getStringExtra("name"),
+//                intent.getStringExtra("class"),
+//                intent.getStringExtra("circle")
+//        )
+
+        val spells = arrayListOf(mapOf<String, Spell>()).toMutableList()
 
         val adapter = SimpleAdapter(
                 this,

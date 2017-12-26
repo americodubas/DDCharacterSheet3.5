@@ -1,68 +1,49 @@
 package com.americo.ddcharactersheet35.data
 
+import android.arch.persistence.room.Database
+import android.arch.persistence.room.Room
+import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import java.io.FileOutputStream
+import com.americo.ddcharactersheet35.model.*
+import com.americo.ddcharactersheet35.util.SingletonHolder
 
 /**
- * Created by Americo on 08/04/2017.
+ * Created by Americo on 24/12/2017.
  *
- * Database helper
+ * Class responsible for maintaining the database and providing instances of the DAOs
  *
  */
-class DatabaseHelper (var myContext: Context) : SQLiteOpenHelper(myContext, DatabaseHelper.DB_NAME, null, DatabaseHelper.DB_VERSION) {
+@Database(
+        version = 1,
+        exportSchema = false,
+        entities = [
+        Character::class,
+        CharacterClasses::class,
+        CharacterItem::class,
+        Classes::class,
+        Item::class,
+        Race::class,
+        Spell::class,
+        Spellcaster::class,
+        SpellLevel::class
+        ]
+)
+abstract class DatabaseHelper : RoomDatabase() {
 
-    companion object {
-        private val DB_NAME = "ded35"
-        private val DB_VERSION = 1
-    }
+    abstract fun characterDao(): CharacterDao
 
-    private val dataBaseFullPath: String
+    abstract fun characterClassesDao(): CharacterClassesDao
 
-    init {
-        this.dataBaseFullPath = "/data/data/${myContext.packageName}/databases/$DB_NAME"
-        verifyDatabase()
-    }
+    abstract fun classesDao(): ClassesDao
 
-    private fun verifyDatabase() {
-        if ( !databaseExists() ) {
-            createDataBase()
-        }
-    }
+    abstract fun raceDao(): RaceDao
 
-    private fun databaseExists(): Boolean {
-        return myContext.getDatabasePath(DB_NAME).exists()
-    }
+    abstract fun spellDao(): SpellDao
 
-    private fun createDataBase() {
-        readableDatabase
-        copyDatabaseFromAssets()
-    }
-
-    private fun copyDatabaseFromAssets() {
-        Log.i("copy", "*** Copying database from assets...")
-        val myInput = myContext.assets.open(DB_NAME)
-        val myOutput = FileOutputStream(dataBaseFullPath)
-        val buffer = ByteArray(10)
-        var length = myInput.read(buffer)
-        while (length > 0) {
-            myOutput.write(buffer, 0, length)
-            length = myInput.read(buffer)
-        }
-        myOutput.flush()
-        myOutput.close()
-        myInput.close()
-        Log.i("copy", "*** Copy finished!")
-    }
-
-    override fun onCreate(p0: SQLiteDatabase?) {
-
-    }
-
-    override fun onUpgrade(p0: SQLiteDatabase?, p1: Int, p2: Int) {
-
-    }
+    companion object : SingletonHolder<DatabaseHelper, Context> ({
+        Room.databaseBuilder(it.applicationContext, DatabaseHelper::class.java, DatabaseCopy.DB_NAME).allowMainThreadQueries().build()
+    })
 
 }
+
+

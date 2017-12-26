@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.service
 
 import android.content.Context
+import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.data.RaceDao
 import com.americo.ddcharactersheet35.dto.RaceDto
 import com.americo.ddcharactersheet35.model.Race
@@ -13,7 +14,7 @@ import com.americo.ddcharactersheet35.util.convertFromTo
  */
 class RaceService(context: Context) {
 
-    private val raceDao = RaceDao(context)
+    private val raceDao = DatabaseHelper.getInstance(context).raceDao()
 
     /**
      * Returns the default [Race].

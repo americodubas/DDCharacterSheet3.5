@@ -7,7 +7,7 @@ package com.americo.ddcharactersheet35.dto
  *
  */
 class CharacterDto {
-        var id: Int = 0
+        var id: Long = 0
         lateinit var race: RaceDto
         lateinit var characterClasses: MutableList<CharacterClassesDto>
         var name: String = ""

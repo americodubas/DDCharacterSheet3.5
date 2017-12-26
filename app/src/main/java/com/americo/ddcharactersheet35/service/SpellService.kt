@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.service
 
 import android.content.Context
+import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.data.SpellDao
 import com.americo.ddcharactersheet35.model.Spell
 import com.americo.ddcharactersheet35.model.Spellcaster
@@ -12,30 +13,30 @@ import com.americo.ddcharactersheet35.model.Spellcaster
  */
 class SpellService(val context: Context) {
 
-    fun getSpellsByNameClassCircle(name: String, spellClass: String, circle: String): MutableList<HashMap<String, String>> {
-        return SpellDao(context).getSpellsByNameClassCircle(name, spellClass, circle)
-    }
+//    fun getSpellsByNameClassCircle(name: String, spellClass: String, circle: String): MutableList<HashMap<String, String>> {
+//        return SpellDao(context).getSpellsByNameClassCircle(name, spellClass, circle)
+//    }
 
     fun getSpellById( id: String): Spell {
-        val spellDao = SpellDao(context)
+//        val spellDao = SpellDao(context)
 
-        val spell = spellDao.getSpellById(id)
+//        val spell = spellDao.getSpellById(id)
+//
+//        spell.allSpellcasters = convertSpellcastersToString(spell)
 
-        spell.allSpellcasters = convertSpellcastersToString(spell)
-
-        return spell
+        return DatabaseHelper.getInstance(context).spellDao().getSpellById(id.toLong())
     }
 
     private fun convertSpellcastersToString(spell: Spell): String {
         val str = StringBuilder()
 
-        spell.spellLevel.forEach {
-            if (str.isNotEmpty()) {
-                //separator for the next caster
-                str.append(", ")
-            }
-            str.append("${it.spellcaster.classes.name} ${it.spellcaster.circle}")
-        }
+//        spell.spellLevel.forEach {
+//            if (str.isNotEmpty()) {
+//                //separator for the next caster
+//                str.append(", ")
+//            }
+//            str.append("${it.spellcaster.classes.name} ${it.spellcaster.circle}")
+//        }
 
         return str.toString()
     }

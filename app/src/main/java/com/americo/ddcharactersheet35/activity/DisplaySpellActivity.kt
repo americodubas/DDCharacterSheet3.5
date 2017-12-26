@@ -26,7 +26,7 @@ class DisplaySpellActivity : AppCompatActivity() {
         find<TextView>(R.id.tv_spell_resistance).text = spell.resistance
         find<TextView>(R.id.tv_spell_description).text = spell.description
         find<TextView>(R.id.tv_spell_notes).text = spell.notes
-        find<TextView>(R.id.tv_spellcaster).text = spell.allSpellcasters
+        //find<TextView>(R.id.tv_spellcaster).text = spell.allSpellcasters
 
     }
 }

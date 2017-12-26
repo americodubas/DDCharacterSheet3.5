@@ -1,23 +1,21 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by Americo on 21/06/2017.
  *
- * Entity of the race
+ * Entity of D&D Races
+ *
  */
-
-@DatabaseTable(tableName = "race")
+@Entity
 class Race {
 
-    @DatabaseField(columnName = "_id", generatedId = true)
-    var id: Int = 0
-    @DatabaseField
-    var name: String = ""
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
+    var id: Long = 0
 
-    override fun toString(): String {
-        return name
-    }
+    var name: String = ""
 }

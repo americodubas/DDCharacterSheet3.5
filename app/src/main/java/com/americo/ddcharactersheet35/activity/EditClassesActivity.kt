@@ -51,7 +51,7 @@ class EditClassesActivity : AppCompatActivity() {
         val usedClasses = CharacterClassesService(this).getCharacterClasses(id)
 
         allClasses.forEach {
-            if(it.id == classes_id.toInt() || usedClasses.indexOf(it) == -1){
+            if(it.id == classes_id.toLong() || usedClasses.indexOf(it) == -1){
                 availableClasses.add(it)
             }
         }

@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.data
 
-import android.content.Context
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Query
 import com.americo.ddcharactersheet35.model.Race
 
 /**
@@ -8,22 +9,13 @@ import com.americo.ddcharactersheet35.model.Race
  *
  * DAO responsible for the [Race]
  */
-class RaceDao(context: Context) {
+@Dao
+interface RaceDao {
 
-    private val db = DatabaseHelper(context)
+    @Query("select * from race where _id = :id")
+    fun  getRace(id: Long): Race
 
-    /**
-     * Returns a [Race] by id
-     */
-    fun  getRace(id: Int): Race {
-        return db.getRaceDao().queryForId(id)
-    }
-
-    /**
-     * Returns a [List] of all [Race].
-     */
-    fun getAllRaces(): List<Race> {
-        return db.getRaceDao().queryForAll()
-    }
+    @Query("select * from race")
+    fun getAllRaces(): List<Race>
 
 }

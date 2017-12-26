@@ -1,31 +1,39 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.ForeignKey
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by Americo on 05/08/2017.
+ *
+ * Entity of the Character's Itens
+ *
  */
-@DatabaseTable(tableName = "character_item")
-class CharacterItem() {
+@Entity(
+        tableName = "character_item",
+        foreignKeys = [
+            (ForeignKey(entity = Character::class,
+                    parentColumns = ["_id"],
+                    childColumns = ["character_id"])),
+            (ForeignKey(entity = Item::class,
+                    parentColumns = ["_id"],
+                    childColumns = ["item_id"]))
+        ]
+)
+class CharacterItem {
 
-    @DatabaseField(columnName = "_id", generatedId = true)
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
     var id = 0
-    @DatabaseField(foreign = true, columnName = "character_id", foreignAutoRefresh = true)
-    lateinit var character: Character
-    @DatabaseField(foreign = true, columnName = "item_id", foreignAutoRefresh = true)
-    lateinit var item: Item
-    @DatabaseField
-    var quantity = 0
 
-    constructor(
-            character: Character,
-            item: Item,
-            quantity: Int = 1
-    ): this() {
-        this.character = character
-        this.item = item
-        this.quantity = quantity
-    }
+    @ColumnInfo(name = "character_id")
+    var characterId: Int = 0
+
+    @ColumnInfo(name = "item_id")
+    var itemId: Int = 0
+
+    var quantity:Int = 0
 
 }

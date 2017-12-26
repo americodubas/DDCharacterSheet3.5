@@ -1,47 +1,38 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.dao.ForeignCollection
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.field.ForeignCollectionField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Index
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by Americo on 29/04/2017.
+ *
+ * Entity of D&D Spells
+ *
  */
+@Entity(
+        indices = [
+            Index("name",unique = true)
+        ]
+)
+class Spell {
 
-@DatabaseTable(tableName = "spell")
-class Spell() {
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
+    var id: Long = 0
 
-    @DatabaseField(columnName = "_id", generatedId = true)
-    var id: Int = 0
-    @DatabaseField(unique = true)
-    lateinit var name: String
+    var name: String = ""
+    var school: String = ""
+    var components: String = ""
+    var casting: String = ""
+    var range: String = ""
+    var area: String = ""
+    var duration: String = ""
+    var saving: String = ""
+    var resistance: String = ""
+    var description: String = ""
+    var focus: String = ""
+    var notes: String = ""
 
-    @ForeignCollectionField(eager = true, maxEagerLevel = 3)
-    lateinit var spellLevel: ForeignCollection<SpellLevel>
-
-    @DatabaseField
-    lateinit var school: String
-    @DatabaseField
-    lateinit var components: String
-    @DatabaseField
-    lateinit var casting: String
-    @DatabaseField
-    lateinit var range: String
-    @DatabaseField
-    lateinit var area: String
-    @DatabaseField
-    lateinit var duration: String
-    @DatabaseField
-    lateinit var saving: String
-    @DatabaseField
-    lateinit var resistance: String
-    @DatabaseField
-    lateinit var description: String
-    @DatabaseField
-    lateinit var focus: String
-    @DatabaseField
-    lateinit var notes: String
-
-    lateinit var allSpellcasters: String
 }

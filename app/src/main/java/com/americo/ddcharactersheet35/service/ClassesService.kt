@@ -2,6 +2,7 @@ package com.americo.ddcharactersheet35.service
 
 import android.content.Context
 import com.americo.ddcharactersheet35.data.ClassesDao
+import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.dto.ClassesDto
 import com.americo.ddcharactersheet35.model.Classes
 import com.americo.ddcharactersheet35.util.convertFromTo
@@ -13,7 +14,7 @@ import com.americo.ddcharactersheet35.util.convertFromTo
  */
 class ClassesService(context: Context) {
 
-    private val classesDao = ClassesDao(context)
+    private val classesDao = DatabaseHelper.getInstance(context).classesDao()
 
     /**
      * Returns the default [Class].

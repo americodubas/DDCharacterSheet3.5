@@ -1,6 +1,6 @@
 package com.americo.ddcharactersheet35.data
 
-import android.content.Context
+import android.arch.persistence.room.*
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.model.Classes
 
@@ -9,39 +9,22 @@ import com.americo.ddcharactersheet35.model.Classes
  *
  * DAO responsible for the [CharacterClasses].
  */
-class CharacterClassesDao(context: Context) {
+@Dao
+interface CharacterClassesDao {
 
-    private val db = DatabaseHelper(context)
+    @Query("select * " +
+            "from character_classes cc " +
+            "join classes c on  cc.classes_id = c._id " +
+            "where character_id = :id")
+    fun getCharacterClasses(id: Long): List<Classes>
 
-    /**
-     * Returns a [List] of [CharacterClasses] from the character.
-     */
-    fun getCharacterClasses(id: Int): List<Classes> {
-        val characterClassesBuilder = db.getCharacterClassesDao().queryBuilder()
-        val classesBuilder = db.getClassesDao().queryBuilder()
+    @Insert
+    fun insertCharacterClass(characterClasses: CharacterClasses): Long
 
-        characterClassesBuilder.where().eq("character_id", id)
-        return classesBuilder.join(characterClassesBuilder).query()
-    }
+    @Delete
+    fun deleteCharacterClass(characterClasses: CharacterClasses)
 
-    /**
-     * Insert the relation of [CharacterClasses].
-     */
-    fun insertCharacterClass(characterClasses: CharacterClasses) {
-        db.getCharacterClassesDao().create(characterClasses)
-    }
+    @Update
+    fun updateCharacterClass(characterClasses: CharacterClasses)
 
-    /**
-     * Delete the relation of [CharacterClasses].
-     */
-    fun deleteCharacterClass(characterClasses: CharacterClasses) {
-        db.getCharacterClassesDao().delete(characterClasses)
-    }
-
-    /**
-     * Update the relation of [CharacterClasses].
-     */
-    fun updateCharacterClass(characterClasses: CharacterClasses) {
-        db.getCharacterClassesDao().update(characterClasses)
-    }
 }

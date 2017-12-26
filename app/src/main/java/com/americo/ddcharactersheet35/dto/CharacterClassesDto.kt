@@ -8,7 +8,7 @@ package com.americo.ddcharactersheet35.dto
  */
 class CharacterClassesDto {
 
-    var id: Int = 0
+    var id: Long = 0
     lateinit  var character: CharacterDto
     lateinit var classes: ClassesDto
     var level: Int = 0

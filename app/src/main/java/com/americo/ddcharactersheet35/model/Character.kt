@@ -1,9 +1,6 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.dao.ForeignCollection
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.field.ForeignCollectionField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.*
 
 /**
  * Created by Americo on 29/04/2017.
@@ -11,67 +8,48 @@ import com.j256.ormlite.table.DatabaseTable
  * Entity of the character
  *
  */
-
-@DatabaseTable(tableName = "character")
+@Entity(
+        foreignKeys = [
+            ForeignKey(entity = Race::class,
+                parentColumns = ["_id"],
+                childColumns = ["race_id"])
+        ]
+)
 class Character {
 
-    @DatabaseField(columnName = "_id", generatedId = true)
-    var id: Int = 0
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
+    var id: Long = 0
 
-    @DatabaseField(foreign = true, columnName = "race_id", foreignAutoRefresh = true)
-    lateinit var race: Race
+    @ColumnInfo(name = "race_id")
+    var raceId: Int = 0
 
-    @ForeignCollectionField(eager = true, maxEagerLevel = 2)
-    lateinit var characterClasses: ForeignCollection<CharacterClasses>
-
-    @DatabaseField
-    var name: String = ""
-    @DatabaseField
-    var alignment: String = ""
-    @DatabaseField
-    var deity: String = ""
-    @DatabaseField
-    var size: String = ""
-    @DatabaseField
-    var age: Int = 0
-    @DatabaseField
-    var gender: String = ""
-    @DatabaseField
-    var height: String = ""
-    @DatabaseField
-    var weight: String = ""
-    @DatabaseField
-    var eyes: String = ""
-    @DatabaseField
-    var hair: String = ""
-    @DatabaseField
-    var skin: String = ""
-    @DatabaseField
-    var level: Int = 0
-    @DatabaseField
-    var experience: Int = 0
-    @DatabaseField
-    var strength: Int = 0
-    @DatabaseField
-    var dexterity: Int = 0
-    @DatabaseField
-    var constitution: Int = 0
-    @DatabaseField
-    var intelligence: Int = 0
-    @DatabaseField
-    var wisdom: Int = 0
-    @DatabaseField
-    var charisma: Int = 0
-    @DatabaseField
-    var fortitude: Int = 0
-    @DatabaseField
-    var reflex: Int = 0
-    @DatabaseField
-    var will: Int = 0
-    @DatabaseField(columnName = "full_hp")
+    @ColumnInfo(name = "full_hp")
     var fullHp: Int = 0
-    @DatabaseField
+
+    var age: Int = 0
+    var level: Int = 0
+    var experience: Int = 0
+    var strength: Int = 0
+    var dexterity: Int = 0
+    var constitution: Int = 0
+    var intelligence: Int = 0
+    var wisdom: Int = 0
+    var charisma: Int = 0
+    var fortitude: Int = 0
+    var reflex: Int = 0
+    var will: Int = 0
     var hp: Int = 0
-    @DatabaseField
+    var name: String = ""
+    var alignment: String = ""
+    var deity: String = ""
+    var size: String = ""
+    var gender: String = ""
+    var height: String = ""
+    var weight: String = ""
+    var eyes: String = ""
+    var hair: String = ""
+    var skin: String = ""
     var speed: String = ""
+
 }

@@ -12,10 +12,7 @@ import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
 import com.americo.ddcharactersheet35.service.CharacterService
-import com.americo.ddcharactersheet35.util.createToolbar
-import com.americo.ddcharactersheet35.util.find
-import com.americo.ddcharactersheet35.util.optionSaveSelected
-import com.americo.ddcharactersheet35.util.textString
+import com.americo.ddcharactersheet35.util.*
 
 class EditCharacterActivity : AppCompatActivity() {
 
@@ -89,6 +86,10 @@ class EditCharacterActivity : AppCompatActivity() {
             eyes = find<EditText>(R.id.et_character_eyes).text.toString()
             hair = find<EditText>(R.id.et_character_hair).text.toString()
         }
+
+        println("argh " + characterDto.characterClasses)
+        println("grrr " + characterDto.characterClasses.size)
+
         service.updateCharacter(characterDto)
     }
 

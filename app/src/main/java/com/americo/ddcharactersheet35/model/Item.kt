@@ -1,78 +1,40 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by Americo on 05/08/2017.
+ *
+ * Entity of D&D Items
+ *
  */
-@DatabaseTable(tableName = "item")
-class Item() {
+@Entity
+class Item {
 
-    @DatabaseField(columnName = "_id", generatedId = true)
-    var id: Int = 0
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
+    var id: Long = 0
 
-    @DatabaseField
-    lateinit var name: String
-    @DatabaseField
-    lateinit var type: String
-    @DatabaseField(columnName = "sub_type")
-    lateinit var subType: String
-    @DatabaseField
-    var weight = 0
-    @DatabaseField
-    var price = 0.0
-    @DatabaseField
-    lateinit var damage: String
-    @DatabaseField
-    var critical = 0
-    @DatabaseField(columnName = "damage_type")
-    lateinit var damageType: String
-    @DatabaseField
-    var range = 0
-    @DatabaseField
-    var armor = 0
-    @DatabaseField(columnName = "max_dexterity")
-    var maxDexterity = 0
-    @DatabaseField
-    var penalty = 0
-    @DatabaseField
-    var failure = 0
-    @DatabaseField
-    lateinit var description: String
+    @ColumnInfo(name = "max_dexterity")
+    var maxDexterity:Int = 0
 
-    constructor(
-            id: Int = 0,
-            name: String = "",
-            type: String = "",
-            subType: String = "",
-            weight: Int = 0,
-            price: Double = 0.0,
-            damage: String = "",
-            critical: Int = 0,
-            damageType: String = "",
-            range: Int = 0,
-            armor: Int = 0,
-            maxDexterity: Int = 0,
-            penalty: Int = 0,
-            failure: Int = 0,
-            description: String = ""
-    ): this() {
-        this.id = id
-        this.name = name
-        this.type = type
-        this.subType = subType
-        this.weight = weight
-        this.price = price
-        this.damage = damage
-        this.critical = critical
-        this.damageType = damageType
-        this.range = range
-        this.armor = armor
-        this.maxDexterity = maxDexterity
-        this.penalty = penalty
-        this.failure = failure
-        this.description = description
-    }
+    @ColumnInfo(name = "sub_type")
+    var subType: String = ""
 
+    @ColumnInfo(name = "damage_type")
+    var damageType: String = ""
+
+    var weight: Int = 0
+    var critical: Int = 0
+    var range: Int = 0
+    var armor: Int = 0
+    var penalty: Int = 0
+    var failure: Int = 0
+    var price: Double = 0.0
+    var name: String = ""
+    var type: String = ""
+    var damage: String = ""
+    var description: String = ""
 }

@@ -7,7 +7,7 @@ package com.americo.ddcharactersheet35.dto
  *
  */
 class ClassesDto {
-    var id: Int = 0
+    var id: Long = 0
     var name: String = ""
     var spellcaster: Int = 0
 

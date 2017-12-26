@@ -1,7 +1,9 @@
 package com.americo.ddcharactersheet35.model
 
-import com.j256.ormlite.field.DatabaseField
-import com.j256.ormlite.table.DatabaseTable
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.ForeignKey
+import android.arch.persistence.room.PrimaryKey
 
 /**
  * Created by Americo on 21/06/2017.
@@ -9,18 +11,29 @@ import com.j256.ormlite.table.DatabaseTable
  * Entity of the Character's Class
  *
  */
-
-@DatabaseTable(tableName = "character_classes")
+@Entity(
+        tableName = "character_classes",
+        foreignKeys = [
+            ForeignKey(entity = Character::class,
+                    parentColumns = ["_id"],
+                    childColumns = ["character_id"]),
+            ForeignKey(entity = Classes::class,
+                    parentColumns = ["_id"],
+                    childColumns = ["classes_id"])
+        ]
+)
 class CharacterClasses {
 
-    @DatabaseField(columnName = "_id", generatedId = true)
-    var id: Int = 0
-    @DatabaseField(foreign = true, columnName = "character_id", foreignAutoRefresh = true)
-    lateinit var character: Character
-    @DatabaseField(foreign = true, columnName = "classes_id", foreignAutoRefresh = true)
-    lateinit var classes: Classes
-    @DatabaseField
+    @ColumnInfo(name = "_id")
+    @PrimaryKey
+    var id: Long = 0
+
+    @ColumnInfo(name = "character_id")
+    var characterId: Int = 0
+
+    @ColumnInfo(name = "classes_id")
+    var classesId: Int = 0
+
     var level: Int = 0
 
-    override fun toString() = level.toString() + " " + classes.name
 }

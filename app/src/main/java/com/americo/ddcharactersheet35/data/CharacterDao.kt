@@ -1,5 +1,9 @@
 package com.americo.ddcharactersheet35.data
 
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Insert
+import android.arch.persistence.room.Query
+import android.arch.persistence.room.Update
 import android.content.Context
 import com.americo.ddcharactersheet35.model.Character
 
@@ -8,24 +12,19 @@ import com.americo.ddcharactersheet35.model.Character
  *
  * DAO responsible for the [Character]
  */
-class CharacterDao(context: Context) {
+@Dao
+interface CharacterDao {
 
-    private val db = DatabaseHelper(context)
+    @Query("select * from character")
+    fun getAllCharacters(): List<Character>
 
-    fun getAllCharacters(): List<Character> {
-        return db.getCharacterDao().queryForAll()
-    }
+    @Query("select * from character where _id = :id")
+    fun getCharacter(id: Long): Character
 
-    fun getCharacter(id: Int): Character {
-        return db.getCharacterDao().queryForId(id)
-    }
+    @Insert
+    fun insertCharacter(character: Character): Long
 
-    fun insertCharacter(character: Character): Character {
-        db.getCharacterDao().create(character)
-        return character
-    }
+    @Update
+    fun updateCharacter(character: Character)
 
-    fun updateCharacter(character: Character) {
-        db.getCharacterDao().update(character)
-    }
 }
