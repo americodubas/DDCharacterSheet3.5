@@ -14,6 +14,8 @@ import com.americo.ddcharactersheet35.util.convertFromTo
 class CharacterService(val context: Context) {
 
     private val characterDao = DatabaseHelper.getInstance(context).characterDao()
+    private val defaultRaceId: Long = 2
+    private val defaultName = "Unknown"
 
     /**
      * Returns a [CharacterDto] by [id].
@@ -33,9 +35,9 @@ class CharacterService(val context: Context) {
      * Insert an empty [Character] with default values.
      */
     fun insertEmptyCharacter(): Long {
-        var character = Character()
-        character.name = "Unknown"
-//        character.race = RaceService(context).getDefaultRace()
+        val character = Character()
+        character.name = defaultName
+        character.raceId = defaultRaceId
         character.id = characterDao.insertCharacter(character)
 
         CharacterClassesService(context).insertDefaultCharacterClasses(character)

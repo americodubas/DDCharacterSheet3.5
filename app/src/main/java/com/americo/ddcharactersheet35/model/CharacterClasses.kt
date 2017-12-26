@@ -29,10 +29,10 @@ class CharacterClasses {
     var id: Long = 0
 
     @ColumnInfo(name = "character_id")
-    var characterId: Int = 0
+    var characterId: Long = 0
 
     @ColumnInfo(name = "classes_id")
-    var classesId: Int = 0
+    var classesId: Long = 0
 
     var level: Int = 0
 

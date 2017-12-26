@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
 import com.americo.ddcharactersheet35.service.CharacterService
+import com.americo.ddcharactersheet35.service.RaceService
 import com.americo.ddcharactersheet35.util.*
 
 class EditCharacterActivity : AppCompatActivity() {
@@ -87,9 +88,6 @@ class EditCharacterActivity : AppCompatActivity() {
             hair = find<EditText>(R.id.et_character_hair).text.toString()
         }
 
-        println("argh " + characterDto.characterClasses)
-        println("grrr " + characterDto.characterClasses.size)
-
         service.updateCharacter(characterDto)
     }
 
@@ -110,10 +108,11 @@ class EditCharacterActivity : AppCompatActivity() {
             find<EditText>(R.id.et_character_skin).textString(skin)
             find<EditText>(R.id.et_character_eyes).textString(eyes)
             find<EditText>(R.id.et_character_hair).textString(hair)
-            find<EditText>(R.id.et_character_race).textString(race.name)
         }
 
-        find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this, characterDto.characterClasses.toList())
+        find<EditText>(R.id.et_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)
+
+//        find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this, characterDto.characterClasses.toList())
 
     }
 

@@ -20,17 +20,21 @@ import java.util.*
 class CharacterClassesService(val context: Context) {
 
     private val characterClassesDao = DatabaseHelper.getInstance(context).characterClassesDao()
+    private val defaultClassesId: Long = 1
+    private val defaultLevel = 1
 
     /**
      * Insert the default [CharacterClasses] to the [Character]
      */
     fun insertDefaultCharacterClasses(character: Character) {
-        val characterClass = CharacterClasses()
-//        characterClass.character = character
-//        characterClass.classes = ClassesService(context).getDefaultClass()
-        characterClass.level = 1
+        val characterClasses = CharacterClasses()
+        with(characterClasses){
+            characterId = character.id
+            classesId = defaultClassesId
+            level = defaultLevel
+        }
 
-        characterClassesDao.insertCharacterClass(characterClass)
+        characterClassesDao.insertCharacterClass(characterClasses)
     }
 
     /**
@@ -86,7 +90,7 @@ class CharacterClassesService(val context: Context) {
     fun getNotUsedClasses(characterDto: CharacterDto): List<ClassesDto> {
         val allClasses = ClassesService(context).getAllClasses()
         val usedClassesId = TreeSet<String>()
-        characterDto.characterClasses.forEach { usedClassesId.add(it.classes.id.toString()) }
+//        characterDto.characterClasses.forEach { usedClassesId.add(it.classes.id.toString()) }
         return allClasses.filter { !usedClassesId.contains(it.id.toString()) }
     }
 

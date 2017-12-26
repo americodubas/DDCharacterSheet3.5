@@ -22,7 +22,7 @@ class Character {
     var id: Long = 0
 
     @ColumnInfo(name = "race_id")
-    var raceId: Int = 0
+    var raceId: Long = 0
 
     @ColumnInfo(name = "full_hp")
     var fullHp: Int = 0

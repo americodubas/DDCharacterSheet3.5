@@ -13,7 +13,7 @@ import com.americo.ddcharactersheet35.model.Race
 interface RaceDao {
 
     @Query("select * from race where _id = :id")
-    fun  getRace(id: Long): Race
+    fun getRace(id: Long): Race
 
     @Query("select * from race")
     fun getAllRaces(): List<Race>

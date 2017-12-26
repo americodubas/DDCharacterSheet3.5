@@ -8,8 +8,7 @@ package com.americo.ddcharactersheet35.dto
  */
 class CharacterDto {
         var id: Long = 0
-        lateinit var race: RaceDto
-        lateinit var characterClasses: MutableList<CharacterClassesDto>
+        var raceId: Long = 0
         var name: String = ""
         var alignment: String = ""
         var deity: String = ""

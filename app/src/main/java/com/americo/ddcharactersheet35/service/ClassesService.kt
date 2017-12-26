@@ -17,11 +17,6 @@ class ClassesService(context: Context) {
     private val classesDao = DatabaseHelper.getInstance(context).classesDao()
 
     /**
-     * Returns the default [Class].
-     */
-    fun getDefaultClass() = classesDao.getClasses(1)
-
-    /**
      * Returns a [List] of all [ClassesDto].
      */
     fun getAllClasses(): List<ClassesDto> {

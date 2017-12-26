@@ -11,6 +11,7 @@ import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.CharacterClassesAdapter
 import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
 import com.americo.ddcharactersheet35.service.CharacterService
+import com.americo.ddcharactersheet35.service.RaceService
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.textString
 
@@ -41,7 +42,6 @@ class CharacterFragment : Fragment() {
         val char = CharacterService(context!!).getCharacter(id)
         with(char) {
             find<TextView>(R.id.tv_character_name).text = name
-            find<TextView>(R.id.tv_character_race).text = race.name
             find<TextView>(R.id.tv_character_level).textString(level)
             find<TextView>(R.id.tv_character_experience).textString(experience)
             find<TextView>(R.id.tv_character_alignment).text = alignment
@@ -56,7 +56,9 @@ class CharacterFragment : Fragment() {
             find<TextView>(R.id.tv_character_hair).text = hair
         }
 
-        find<ListView>(R.id.lv_classes).adapter = CharacterClassesAdapter(context!!, char.characterClasses.toList())
+        find<TextView>(R.id.tv_character_race).text = RaceService(context!!).getRace(char.raceId).name
+
+//        find<ListView>(R.id.lv_classes).adapter = CharacterClassesAdapter(context!!, char.characterClasses.toList())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

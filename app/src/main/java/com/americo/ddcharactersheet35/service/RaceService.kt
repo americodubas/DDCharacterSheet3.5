@@ -17,14 +17,15 @@ class RaceService(context: Context) {
     private val raceDao = DatabaseHelper.getInstance(context).raceDao()
 
     /**
-     * Returns the default [Race].
-     */
-    fun getDefaultRace() = raceDao.getRace(2)
-
-    /**
      * Returns a [List] of all [RaceDto].
      */
     fun getAllRaces(): List<RaceDto> {
         return convertFromTo(raceDao.getAllRaces())
     }
+
+    /**
+     * Returns a [RaceDto] by the id
+     */
+    fun getRace(id: Long): RaceDto = convertFromTo(raceDao.getRace(id))
+
 }

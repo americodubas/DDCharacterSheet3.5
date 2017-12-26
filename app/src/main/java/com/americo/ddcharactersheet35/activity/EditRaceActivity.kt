@@ -42,7 +42,7 @@ class EditRaceActivity : AppCompatActivity() {
     }
 
     private fun editRace() {
-        character.race = find<Spinner>(R.id.sp_character_race).selectedItem as (RaceDto)
+        character.raceId = (find<Spinner>(R.id.sp_character_race).selectedItem as (RaceDto)).id
         CharacterService(this).updateCharacter(character)
     }
 
@@ -56,6 +56,6 @@ class EditRaceActivity : AppCompatActivity() {
         super.onResume()
         id = intent.getStringExtra("id")
         character = CharacterService(this).getCharacter(id)
-        find<Spinner>(R.id.sp_character_race).setSelection(races.indexOfFirst { character.race.id == it.id })
+        find<Spinner>(R.id.sp_character_race).setSelection(races.indexOfFirst { character.raceId == it.id })
     }
 }
