@@ -48,7 +48,7 @@ class EditClassesActivity : AppCompatActivity() {
     private fun setAvailableClasses() {
         //TODO put it on service
         val availableClasses = ArrayList<ClassesDto>()
-        val usedClasses = CharacterClassesService(this).getCharacterClasses(id)
+        val usedClasses = CharacterClassesService(this).getUsedClasses(id)
 
         allClasses.forEach {
             if(it.id == classes_id.toLong() || usedClasses.indexOf(it) == -1){

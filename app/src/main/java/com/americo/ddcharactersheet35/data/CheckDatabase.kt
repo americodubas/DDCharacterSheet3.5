@@ -7,40 +7,37 @@ import java.io.FileOutputStream
 /**
  * Created by Americo on 08/04/2017.
  *
- * Class responsible for creating the database from the assets file
+ * Class responsible for checking if the database already exists.
+ * If the database isn't found it'll create one from the file ded35 in the assets.
  *
  */
-class DatabaseCopy(private var myContext: Context) {
+class CheckDatabase(private var myContext: Context) {
 
     companion object {
-        val DB_NAME = "ded35"
+        val databaseName = "ded35"
     }
 
-    private val dataBaseFullPath: String
+    private val databaseFullPath: String
 
     init {
-        this.dataBaseFullPath = "/data/data/${myContext.packageName}/databases/$DB_NAME"
+        this.databaseFullPath = "/data/data/${myContext.packageName}/databases/$databaseName"
         verifyDatabase()
     }
 
     private fun verifyDatabase() {
         if ( !databaseExists() ) {
-            createDataBase()
+            createDatabaseFromAssets()
         }
     }
 
     private fun databaseExists(): Boolean {
-        return myContext.getDatabasePath(DB_NAME).exists()
+        return myContext.getDatabasePath(databaseName).exists()
     }
 
-    private fun createDataBase() {
-        copyDatabaseFromAssets()
-    }
-
-    private fun copyDatabaseFromAssets() {
+    private fun createDatabaseFromAssets() {
         Log.i("copy", "*** Copying database from assets...")
-        val myInput = myContext.assets.open(DB_NAME)
-        val myOutput = FileOutputStream(dataBaseFullPath)
+        val myInput = myContext.assets.open(databaseName)
+        val myOutput = FileOutputStream(databaseFullPath)
         val buffer = ByteArray(10)
         var length = myInput.read(buffer)
         while (length > 0) {

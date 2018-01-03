@@ -85,7 +85,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
     private fun showCharacterClass(view: View, char: CharacterClassesDto) {
         with(char){
             view.findViewById<TextView>(R.id.tv_id).text = id.toString()
-            view.findViewById<TextView>(R.id.tv_name).text = classes.name
+            view.findViewById<TextView>(R.id.tv_name).text = char.classesName
             view.findViewById<TextView>(R.id.tv_level).text = level.toString()
         }
     }

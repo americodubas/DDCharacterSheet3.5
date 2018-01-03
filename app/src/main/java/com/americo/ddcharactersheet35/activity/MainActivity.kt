@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.GridView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.CharacterAdapter
-import com.americo.ddcharactersheet35.data.DatabaseCopy
+import com.americo.ddcharactersheet35.data.CheckDatabase
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.find
 
@@ -17,11 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        DatabaseCopy(this)
-
-        find<Button>(R.id.bt_spell_filter).setOnClickListener {
-            startActivity( Intent(this, SpellFilterActivity::class.java))
-        }
+        CheckDatabase(this)
 
         newCharacterListener()
     }

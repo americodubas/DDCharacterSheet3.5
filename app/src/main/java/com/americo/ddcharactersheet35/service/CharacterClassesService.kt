@@ -38,10 +38,17 @@ class CharacterClassesService(val context: Context) {
     }
 
     /**
-     * Returns a [List] of [Classes] of the [Character] by it's [id].
+     * Returns a [List] of [CharacterClassesDto] of the [Character] by it's [id].
      */
-    fun getCharacterClasses(id: String): List<ClassesDto> {
-        return convertFromTo(characterClassesDao.getCharacterClasses(id.toLong()))
+    fun getCharacterClasses(id: String): List<CharacterClassesDto> {
+        return characterClassesDao.getCharacterClasses(id.toLong())
+    }
+
+    /**
+     * Returns a [List] of [ClassesDto] of the [Character] by it's [id].
+     */
+    fun getUsedClasses(id: String): List<ClassesDto> {
+        return convertFromTo(characterClassesDao.getUsedClasses(id.toLong()))
     }
 
     /**

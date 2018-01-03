@@ -33,7 +33,7 @@ class CharacterClassesAdapter(val context: Context, val characterClasses: List<C
 
     private fun  showCharacter(view: View, position: Int) {
         val char = characterClasses[position]
-        view.findViewById<TextView>(R.id.tv_name).text = char.classes.name
+        view.findViewById<TextView>(R.id.tv_name).text = char.classesName
         view.findViewById<TextView>(R.id.tv_level).text = char.level.toString()
     }
 

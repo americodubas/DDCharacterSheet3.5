@@ -41,7 +41,7 @@ abstract class DatabaseHelper : RoomDatabase() {
     abstract fun spellDao(): SpellDao
 
     companion object : SingletonHolder<DatabaseHelper, Context> ({
-        Room.databaseBuilder(it.applicationContext, DatabaseHelper::class.java, DatabaseCopy.DB_NAME).allowMainThreadQueries().build()
+        Room.databaseBuilder(it.applicationContext, DatabaseHelper::class.java, CheckDatabase.databaseName).allowMainThreadQueries().build()
     })
 
 }

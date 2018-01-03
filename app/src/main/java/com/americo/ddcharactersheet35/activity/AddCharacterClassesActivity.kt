@@ -40,13 +40,15 @@ class AddCharacterClassesActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         addCharacterClasses()
-        return optionSaveSelected(item, id, Intent(this, EditCharacterActivity::class.java))
+        return optionSaveSelected(item, id, Intent(this,
+                EditCharacterActivity::class.java))
     }
 
     private fun addCharacterClasses() {
         val characterClass = CharacterClassesDto()
-        characterClass.character = character
-        characterClass.classes = find<Spinner>(R.id.sp_class).selectedItem as (ClassesDto)
+        characterClass.characterId = character.id
+        characterClass.classesId =
+                (find<Spinner>(R.id.sp_class).selectedItem as (ClassesDto)).id
         characterClass.level = find<EditText>(R.id.et_level).text.toString().toInt()
         CharacterClassesService(this).insertCharacterClasses(characterClass)
     }

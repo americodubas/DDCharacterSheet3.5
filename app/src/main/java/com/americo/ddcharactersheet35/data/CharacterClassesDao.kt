@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.data
 
 import android.arch.persistence.room.*
+import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.model.Classes
 
@@ -12,11 +13,22 @@ import com.americo.ddcharactersheet35.model.Classes
 @Dao
 interface CharacterClassesDao {
 
-    @Query("select * " +
-            "from character_classes cc " +
-            "join classes c on  cc.classes_id = c._id " +
-            "where character_id = :id")
-    fun getCharacterClasses(id: Long): List<Classes>
+    @Query("""
+        select ch._id id, ch.character_id characterId, ch.classes_id classesId,
+        ch.level level, cl.name classesName
+        from character_classes ch
+        join classes cl on ch.classes_id = cl._id
+        where ch.character_id = :id
+        """)
+    fun getCharacterClasses(id: Long): List<CharacterClassesDto>
+
+    @Query("""
+        select *
+        from character_classes ch
+        join classes cl on ch.classes_id = cl._id
+        where ch.character_id = :id
+        """)
+    fun getUsedClasses(id: Long): List<Classes>
 
     @Insert
     fun insertCharacterClass(characterClasses: CharacterClasses): Long
