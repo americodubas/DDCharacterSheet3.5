@@ -23,20 +23,20 @@ interface CharacterClassesDao {
     fun getCharacterClasses(id: Long): List<CharacterClassesDto>
 
     @Query("""
-        select *
-        from character_classes ch
-        join classes cl on ch.classes_id = cl._id
-        where ch.character_id = :id
+        select cl._id, cl.name
+        from classes cl
+        left join character_classes ch on ch.classes_id = cl._id and ch.character_id = :id
+        where ch._id is null
         """)
-    fun getUsedClasses(id: Long): List<Classes>
+    fun getNotUsedClasses(id: Long): List<Classes>
 
     @Insert
-    fun insertCharacterClass(characterClasses: CharacterClasses): Long
+    fun insertCharacterClasses(characterClasses: CharacterClasses): Long
 
     @Delete
-    fun deleteCharacterClass(characterClasses: CharacterClasses)
+    fun deleteCharacterClasses(characterClasses: CharacterClasses)
 
     @Update
-    fun updateCharacterClass(characterClasses: CharacterClasses)
+    fun updateCharacterClasses(characterClasses: CharacterClasses)
 
 }

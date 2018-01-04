@@ -19,7 +19,7 @@ import android.arch.persistence.room.PrimaryKey
 class Spell {
 
     @ColumnInfo(name = "_id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
     var name: String = ""

@@ -3,14 +3,11 @@ package com.americo.ddcharactersheet35.service
 import android.content.Context
 import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
-import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.dto.ClassesDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.model.Character
 import com.americo.ddcharactersheet35.model.CharacterClasses
-import com.americo.ddcharactersheet35.model.Classes
 import com.americo.ddcharactersheet35.util.convertFromTo
-import java.util.*
 
 /**
  * Created by Americo on 20/08/2017.
@@ -34,7 +31,7 @@ class CharacterClassesService(val context: Context) {
             level = defaultLevel
         }
 
-        characterClassesDao.insertCharacterClass(characterClasses)
+        characterClassesDao.insertCharacterClasses(characterClasses)
     }
 
     /**
@@ -45,24 +42,17 @@ class CharacterClassesService(val context: Context) {
     }
 
     /**
-     * Returns a [List] of [ClassesDto] of the [Character] by it's [id].
-     */
-    fun getUsedClasses(id: String): List<ClassesDto> {
-        return convertFromTo(characterClassesDao.getUsedClasses(id.toLong()))
-    }
-
-    /**
      * Insert the relation of [CharacterClassesDto].
      */
-    fun insertCharacterClasses(characterClasses: CharacterClassesDto){
-        characterClassesDao.insertCharacterClass(convertFromTo(characterClasses))
+    fun insertCharacterClasses(characterClassesDto: CharacterClassesDto){
+        characterClassesDao.insertCharacterClasses(convertFromTo(characterClassesDto))
     }
 
     /**
      * Delete the relation of [CharacterClassesDto].
      */
     fun deleteCharacterClasses(characterClasses: CharacterClassesDto){
-        characterClassesDao.deleteCharacterClass(convertFromTo(characterClasses))
+        characterClassesDao.deleteCharacterClasses(convertFromTo(characterClasses))
     }
 
     /**
@@ -70,7 +60,7 @@ class CharacterClassesService(val context: Context) {
      */
     fun increaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         characterClassDto.level += 1
-        characterClassesDao.updateCharacterClass(convertFromTo(characterClassDto))
+        characterClassesDao.updateCharacterClasses(convertFromTo(characterClassDto))
         return characterClassDto
     }
 
@@ -82,7 +72,7 @@ class CharacterClassesService(val context: Context) {
     fun decreaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         if (!canDecreaseLevel(characterClassDto)) throw CannotDecreaseCharacterClassesLevel()
         characterClassDto.level -= 1
-        characterClassesDao.updateCharacterClass(convertFromTo(characterClassDto))
+        characterClassesDao.updateCharacterClasses(convertFromTo(characterClassDto))
         return characterClassDto
     }
 
@@ -92,13 +82,10 @@ class CharacterClassesService(val context: Context) {
     private fun canDecreaseLevel(characterClassDto: CharacterClassesDto) = characterClassDto.level > 1
 
     /**
-     * Returns a [List] of the [ClassesDto] not used by the [CharacterDto].
+     * Returns a [List] of the [ClassesDto] not used by the character's id.
      */
-    fun getNotUsedClasses(characterDto: CharacterDto): List<ClassesDto> {
-        val allClasses = ClassesService(context).getAllClasses()
-        val usedClassesId = TreeSet<String>()
-//        characterDto.characterClasses.forEach { usedClassesId.add(it.classes.id.toString()) }
-        return allClasses.filter { !usedClassesId.contains(it.id.toString()) }
+    fun getNotUsedClasses(id: String): List<ClassesDto> {
+        return convertFromTo(characterClassesDao.getNotUsedClasses(id.toLong()))
     }
 
 }

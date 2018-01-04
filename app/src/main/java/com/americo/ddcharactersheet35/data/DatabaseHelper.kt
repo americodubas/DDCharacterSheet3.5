@@ -14,7 +14,7 @@ import com.americo.ddcharactersheet35.util.SingletonHolder
  *
  */
 @Database(
-        version = 1,
+        version = 3,
         exportSchema = false,
         entities = [
         Character::class,

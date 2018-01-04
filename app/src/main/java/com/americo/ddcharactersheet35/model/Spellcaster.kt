@@ -21,7 +21,7 @@ import android.arch.persistence.room.PrimaryKey
 class Spellcaster {
 
     @ColumnInfo(name = "_id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
     @ColumnInfo(name = "classes_id")

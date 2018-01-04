@@ -18,7 +18,7 @@ import android.arch.persistence.room.*
 class Character {
 
     @ColumnInfo(name = "_id")
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     var id: Long = 0
 
     @ColumnInfo(name = "race_id")

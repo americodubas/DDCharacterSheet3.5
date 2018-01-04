@@ -18,14 +18,13 @@ class EditClassesActivity : AppCompatActivity() {
     companion object {
         lateinit var id: String
         lateinit var classes_id: String
-        lateinit var allClasses: List<ClassesDto>
+        lateinit var classes: List<ClassesDto>
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_classes)
         createToolbar(getString(R.string.edit_class))
-        getAllClasses()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -41,25 +40,8 @@ class EditClassesActivity : AppCompatActivity() {
         super.onResume()
         id = intent.getStringExtra("id")
         //TODO i think i should receive a characterClass not the class itsself
+        //TODO not used, delete later
         classes_id = intent.getStringExtra("classes_id")
-        setAvailableClasses()
-    }
-
-    private fun setAvailableClasses() {
-        //TODO put it on service
-        val availableClasses = ArrayList<ClassesDto>()
-        val usedClasses = CharacterClassesService(this).getUsedClasses(id)
-
-        allClasses.forEach {
-            if(it.id == classes_id.toLong() || usedClasses.indexOf(it) == -1){
-                availableClasses.add(it)
-            }
-        }
-        //TODO put it on adapter
-    }
-
-    private fun getAllClasses() {
-         allClasses = ClassesService(this).getAllClasses()
     }
 
 }
