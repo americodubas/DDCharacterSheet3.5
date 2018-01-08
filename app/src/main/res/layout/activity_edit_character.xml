@@ -10,32 +10,26 @@
         layout="@layout/toolbar" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/label"
         android:text="@string/name"/>
 
     <EditText
         android:id="@+id/et_character_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/field"
         android:inputType="textPersonName"/>
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/label"
         android:text="@string/race"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
-        <EditText
-            android:id="@+id/et_character_race"
+        <TextView
+            android:id="@+id/tv_character_race"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="textPersonName"/>
+            android:layout_weight="1"/>
 
         <ImageButton
             android:id="@+id/ib_race"
@@ -47,9 +41,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <ImageButton
             android:id="@+id/ib_add_class"
@@ -74,15 +66,10 @@
         android:id="@+id/lv_classes"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,20 +84,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/experience" />
 
             <EditText
                 android:id="@+id/et_character_experience"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="number" />
 
         </LinearLayout>
@@ -118,15 +100,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -142,10 +119,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -163,15 +137,10 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -187,20 +156,15 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/age"/>
 
             <EditText
                 android:id="@+id/et_character_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="number"/>
 
         </LinearLayout>
@@ -208,44 +172,32 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/size"/>
 
             <EditText
                 android:id="@+id/et_character_size"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="textPersonName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/height"/>
 
             <EditText
                 android:id="@+id/et_character_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="numberDecimal"/>
 
         </LinearLayout>
@@ -253,44 +205,32 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/weight"/>
 
             <EditText
                 android:id="@+id/et_character_weight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="number"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/skin"/>
 
             <EditText
                 android:id="@+id/et_character_skin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="textPersonName"/>
 
         </LinearLayout>
@@ -298,44 +238,32 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/eyes"/>
 
             <EditText
                 android:id="@+id/et_character_eyes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="textPersonName"/>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/label"
                 android:text="@string/hair"/>
 
             <EditText
                 android:id="@+id/et_character_hair"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/field"
                 android:inputType="textPersonName"/>
 
         </LinearLayout>

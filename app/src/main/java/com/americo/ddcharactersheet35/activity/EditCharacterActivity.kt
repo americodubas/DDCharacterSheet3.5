@@ -111,7 +111,7 @@ class EditCharacterActivity : AppCompatActivity() {
             find<EditText>(R.id.et_character_hair).textString(hair)
         }
 
-        find<EditText>(R.id.et_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)
+        find<EditText>(R.id.tv_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)
 
         find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this,
                 CharacterClassesService(this).getCharacterClasses(id))

@@ -33,10 +33,10 @@
 
     <LinearLayout
         android:baselineAligned="false"
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/level"
@@ -49,7 +49,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/experience"
@@ -64,10 +64,10 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/alignment"
@@ -80,7 +80,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/deity"
@@ -95,10 +95,10 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/gender"
@@ -111,7 +111,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/age"
@@ -126,10 +126,10 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/size"
@@ -142,7 +142,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/height"
@@ -157,10 +157,10 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/weight"
@@ -173,7 +173,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/skin"
@@ -188,10 +188,10 @@
     </LinearLayout>
 
     <LinearLayout
-        style="@style/linearHorizontalFields">
+        style="@style/linearHorizontal">
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/eyes"
@@ -204,7 +204,7 @@
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearFieldTwoColumns">
+            style="@style/linearVerticalTwoColumns">
 
             <TextView
                 android:text="@string/hair"
