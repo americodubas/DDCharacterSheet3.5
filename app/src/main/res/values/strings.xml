@@ -34,6 +34,7 @@
     <string name="remove_class">Remove Class</string>
     <string name="add_class">Add Class</string>
     <string name="cannot_decrease_level">Can\'t decrease level</string>
+    <string name="select_character">Select a Character</string>
 
     <string-array name="item_type">
         <item>Simple Weapons</item>
