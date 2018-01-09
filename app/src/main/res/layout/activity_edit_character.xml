@@ -1,273 +1,281 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.americo.ddcharactersheet35.activity.EditCharacterActivity">
 
-    <include
-        android:id="@+id/in_toolbar"
-        layout="@layout/toolbar" />
-
-    <TextView
-        style="@style/label"
-        android:text="@string/name"/>
-
-    <EditText
-        android:id="@+id/et_character_name"
-        style="@style/field"
-        android:inputType="textPersonName"/>
-
-    <TextView
-        style="@style/label"
-        android:text="@string/race"/>
-
     <LinearLayout
-        style="@style/linearHorizontal">
-
-        <TextView
-            android:id="@+id/tv_character_race"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:id="@+id/ib_race"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_launch"
-            android:contentDescription="@string/select_race" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <ImageButton
-            android:id="@+id/ib_add_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_add_circle_outline"
-            android:contentDescription="@string/add_class"
-            android:padding="5dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/s_class"
-            android:padding="5dp"/>
-
-    </LinearLayout>
-
-    <ListView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_classes"/>
+        android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/linearHorizontal">
+        <include
+            android:id="@+id/in_toolbar"
+            layout="@layout/toolbar" />
+
+        <TextView
+            style="@style/label"
+            android:text="@string/name"/>
+
+        <EditText
+            android:id="@+id/et_character_name"
+            style="@style/editField"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            style="@style/label"
+            android:text="@string/race"/>
 
         <LinearLayout
-            style="@style/linearVerticalTwoColumns">
+            style="@style/linearHorizontal">
 
             <TextView
+                android:id="@+id/tv_character_race"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="2dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp"/>
+
+            <ImageButton
+                android:id="@+id/ib_race"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/level" />
-
-            <TextView
-                android:id="@+id/tv_character_level"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:background="@drawable/ic_launch"
+                android:contentDescription="@string/select_race"
+                android:padding="2dp"/>
 
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearVerticalTwoColumns">
+            style="@style/linearHorizontal">
 
-            <TextView
-                style="@style/label"
-                android:text="@string/experience" />
-
-            <EditText
-                android:id="@+id/et_character_experience"
-                style="@style/field"
-                android:inputType="number" />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
+            <ImageButton
+                android:id="@+id/ib_add_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/alignment"/>
+                android:background="@drawable/ic_add_circle_outline"
+                android:contentDescription="@string/add_class"
+                android:padding="5dp"/>
 
-            <EditText
-                android:id="@+id/et_character_alignment"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
+                android:layout_weight="1"
+                android:text="@string/add_class"
+                android:padding="5dp"
+                android:textColor="@color/colorAccentDark"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/lv_classes"/>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/level" />
+
+                <TextView
+                    android:id="@+id/tv_character_level"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp"
+                    android:padding="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/experience" />
+
+                <EditText
+                    android:id="@+id/et_character_experience"
+                    style="@style/editField"
+                    android:inputType="number" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearVerticalTwoColumns">
+            style="@style/linearHorizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/deity"/>
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
 
-            <EditText
-                android:id="@+id/et_character_deity"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
+                <TextView
+                    style="@style/label"
+                    android:text="@string/alignment"/>
+
+                <EditText
+                    android:id="@+id/et_character_alignment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/deity"/>
+
+                <EditText
+                    android:id="@+id/et_character_deity"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/gender"/>
+
+                <EditText
+                    android:id="@+id/et_character_gender"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/age"/>
+
+                <EditText
+                    android:id="@+id/et_character_age"
+                    style="@style/editField"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/size"/>
+
+                <EditText
+                    android:id="@+id/et_character_size"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/height"/>
+
+                <EditText
+                    android:id="@+id/et_character_height"
+                    style="@style/editField"
+                    android:inputType="numberDecimal"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/weight"/>
+
+                <EditText
+                    android:id="@+id/et_character_weight"
+                    style="@style/editField"
+                    android:inputType="number"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/skin"/>
+
+                <EditText
+                    android:id="@+id/et_character_skin"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/eyes"/>
+
+                <EditText
+                    android:id="@+id/et_character_eyes"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    style="@style/label"
+                    android:text="@string/hair"/>
+
+                <EditText
+                    android:id="@+id/et_character_hair"
+                    style="@style/editField"
+                    android:inputType="textPersonName"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/gender"/>
-
-            <EditText
-                android:id="@+id/et_character_gender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/age"/>
-
-            <EditText
-                android:id="@+id/et_character_age"
-                style="@style/field"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/size"/>
-
-            <EditText
-                android:id="@+id/et_character_size"
-                style="@style/field"
-                android:inputType="textPersonName"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/height"/>
-
-            <EditText
-                android:id="@+id/et_character_height"
-                style="@style/field"
-                android:inputType="numberDecimal"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/weight"/>
-
-            <EditText
-                android:id="@+id/et_character_weight"
-                style="@style/field"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/skin"/>
-
-            <EditText
-                android:id="@+id/et_character_skin"
-                style="@style/field"
-                android:inputType="textPersonName"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/eyes"/>
-
-            <EditText
-                android:id="@+id/et_character_eyes"
-                style="@style/field"
-                android:inputType="textPersonName"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                style="@style/label"
-                android:text="@string/hair"/>
-
-            <EditText
-                android:id="@+id/et_character_hair"
-                style="@style/field"
-                android:inputType="textPersonName"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

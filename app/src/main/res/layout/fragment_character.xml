@@ -1,221 +1,225 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.americo.ddcharactersheet35.fragment.CharacterFragment"
-    android:padding="5dp">
+    tools:context="com.americo.ddcharactersheet35.fragment.CharacterFragment">
 
-    <TextView
-        android:text="@string/name"
-        style="@style/label" />
-
-    <TextView
-        android:id="@+id/tv_character_name"
-        style="@style/field"/>
-
-    <TextView
-        android:text="@string/race"
-        style="@style/label"/>
-
-    <TextView
-        android:id="@+id/tv_character_race"
-        style="@style/field"/>
-
-    <TextView
-        android:text="@string/s_class"
-        style="@style/label"/>
-
-    <ListView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_classes"/>
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:baselineAligned="false"
-        style="@style/linearHorizontal">
+        <TextView
+            android:text="@string/name"
+            style="@style/label" />
+
+        <TextView
+            android:id="@+id/tv_character_name"
+            style="@style/field"/>
+
+        <TextView
+            android:text="@string/race"
+            style="@style/label"/>
+
+        <TextView
+            android:id="@+id/tv_character_race"
+            style="@style/field"/>
+
+        <TextView
+            android:text="@string/s_class"
+            style="@style/label"/>
+
+        <ListView
+            style="@style/field"
+            android:id="@+id/lv_classes"/>
 
         <LinearLayout
-            style="@style/linearVerticalTwoColumns">
+            android:baselineAligned="false"
+            style="@style/linearHorizontal">
 
-            <TextView
-                android:text="@string/level"
-                style="@style/label"/>
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
 
-            <TextView
-                android:id="@+id/tv_character_level"
-                style="@style/field"/>
+                <TextView
+                    android:text="@string/level"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_level"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/experience"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_experience"
+                    style="@style/field"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            style="@style/linearVerticalTwoColumns">
+            style="@style/linearHorizontal">
 
-            <TextView
-                android:text="@string/experience"
-                style="@style/label"/>
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
 
-            <TextView
-                android:id="@+id/tv_character_experience"
-                style="@style/field"/>
+                <TextView
+                    android:text="@string/alignment"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_alignment"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/deity"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_deity"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/gender"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_gender"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/age"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_age"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/size"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_size"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/height"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_height"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/weight"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_weight"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/skin"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_skin"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/linearHorizontal">
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/eyes"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_eyes"
+                    style="@style/field"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/linearVerticalTwoColumns">
+
+                <TextView
+                    android:text="@string/hair"
+                    style="@style/label"/>
+
+                <TextView
+                    android:id="@+id/tv_character_hair"
+                    style="@style/field"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/alignment"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_alignment"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/deity"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_deity"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/gender"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_gender"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/age"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_age"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/size"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_size"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/height"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_height"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/weight"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_weight"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/skin"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_skin"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        style="@style/linearHorizontal">
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/eyes"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_eyes"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/linearVerticalTwoColumns">
-
-            <TextView
-                android:text="@string/hair"
-                style="@style/label"/>
-
-            <TextView
-                android:id="@+id/tv_character_hair"
-                style="@style/field"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</ScrollView>
