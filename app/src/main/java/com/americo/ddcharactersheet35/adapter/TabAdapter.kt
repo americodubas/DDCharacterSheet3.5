@@ -10,7 +10,7 @@ import com.americo.ddcharactersheet35.fragment.*
  */
 class TabAdapter(fm: FragmentManager, var id: String) : FragmentStatePagerAdapter(fm) {
 
-    private val tabTitle = arrayOf("CHAR", "INV", "FEATS", "SPELLS", "NOTES")
+    private val tabTitle = arrayOf("CHAR", "INV", "FEAT", "SPELL", "NOTE")
 
     override fun getItem(position: Int): Fragment {
 
