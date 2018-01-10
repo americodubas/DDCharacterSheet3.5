@@ -113,8 +113,9 @@ class EditCharacterActivity : AppCompatActivity() {
 
         find<EditText>(R.id.tv_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)
 
-        find<ListView>(R.id.lv_classes).adapter = EditCharacterClassAdapter(this,
-                CharacterClassesService(this).getCharacterClasses(id))
+        val classesView = find<ListView>(R.id.lv_classes)
+        classesView.adapter = EditCharacterClassAdapter(this, CharacterClassesService(this).getCharacterClasses(id))
+        setListViewHeight(classesView)
 
     }
 

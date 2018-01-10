@@ -14,6 +14,7 @@ import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.service.RaceService
 import com.americo.ddcharactersheet35.util.find
+import com.americo.ddcharactersheet35.util.setListViewHeight
 import com.americo.ddcharactersheet35.util.textString
 
 /**
@@ -60,8 +61,10 @@ class CharacterFragment : Fragment() {
         find<TextView>(R.id.tv_character_race).text =
                 RaceService(context!!).getRace(char.raceId).name
 
-        find<ListView>(R.id.lv_classes).adapter = CharacterClassesAdapter(context!!,
-                CharacterClassesService(context!!).getCharacterClasses(id))
+        val classesView = find<ListView>(R.id.lv_classes)
+        classesView.adapter = CharacterClassesAdapter(context!!, CharacterClassesService(context!!).getCharacterClasses(id))
+        setListViewHeight(classesView)
+
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,

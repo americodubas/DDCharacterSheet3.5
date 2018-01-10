@@ -10,6 +10,7 @@ import android.text.SpannableStringBuilder
 import android.view.MenuItem
 import android.view.View
 import android.widget.BaseAdapter
+import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
 import com.americo.ddcharactersheet35.R
@@ -89,6 +90,33 @@ fun AppCompatActivity.optionSaveSelected(item: MenuItem?, id: String, intent: In
         }
         else -> false
     }
+}
+
+/**
+ * Function to set the [ListView] height based on it's children plus it's padding.
+ * Fix the problem of a [ListView] inside a ScrollView.
+ *
+ * @param list ListView
+ */
+fun setListViewHeight(list: ListView) {
+    val adapter = list.adapter
+    var adapterCount = adapter.count
+    if (adapterCount == 0) return
+
+    var height = list.paddingTop + list.paddingBottom
+    adapterCount -= 1
+
+    for (i in 0 .. adapterCount) {
+        val item = adapter.getView(i, null, list)
+        item.measure(0 ,0)
+        height += item.measuredHeight
+    }
+
+    val params = list.layoutParams
+    params.height = height + (list.dividerHeight * (adapter.count) - 1)
+
+    list.layoutParams = params
+    list.requestLayout()
 }
 
 /**
