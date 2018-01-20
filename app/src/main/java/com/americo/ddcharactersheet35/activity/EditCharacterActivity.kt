@@ -5,8 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AlphaAnimation
+import android.view.animation.AnimationUtils
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
@@ -20,6 +21,7 @@ class EditCharacterActivity : AppCompatActivity() {
 
     companion object{
         lateinit var id: String
+        val buttonClick = AlphaAnimation(1f, 0.8f)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +33,9 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     private fun editRaceListener() {
-        find<ImageButton>(R.id.ib_race).setOnClickListener{
+        find<TextView>(R.id.tv_race).setOnClickListener{
+//            it.startAnimation(buttonClick)
+            it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.click))
             val intent = Intent(this, EditRaceActivity::class.java)
             intent.putExtra("id", id)
             startActivity( intent )
@@ -39,7 +43,7 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     private fun addClassListener() {
-        find<ImageButton>(R.id.ib_add_class).setOnClickListener{
+        find<TextView>(R.id.tv_add_class).setOnClickListener{
             val intent = Intent(this, AddCharacterClassesActivity::class.java)
             intent.putExtra("id", id)
             startActivity( intent )

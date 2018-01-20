@@ -5,13 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.ImageButton
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.service.CharacterClassesService
-import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.toast
 
 /**
@@ -48,7 +46,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
      * Delete the relation of the characterClass.
      */
     private fun deleteListener(view: View, char: CharacterClassesDto) {
-        view.findViewById<ImageButton>(R.id.ib_remove).setOnClickListener {
+        view.findViewById<TextView>(R.id.bt_remove).setOnClickListener {
             CharacterClassesService(context).deleteCharacterClasses(char)
             characterClasses = characterClasses.minus(char)
             notifyDataSetChanged()
@@ -59,7 +57,8 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
      * Decrease the level of the characterClass.
      */
     private fun decreaseLevelListener(view: View, char: CharacterClassesDto) {
-        view.findViewById<ImageButton>(R.id.ib_decrease).setOnClickListener {
+
+        view.findViewById<TextView>(R.id.tv_decrease).setOnClickListener {
             try {
                 view.findViewById<TextView>(R.id.tv_level).text =
                         CharacterClassesService(context).decreaseCharacterClassesLevel(char).level.toString()
@@ -73,7 +72,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
      * Increase the level of the characterClass.
      */
     private fun increaseLevelListener(view: View, char: CharacterClassesDto) {
-        view.findViewById<ImageButton>(R.id.ib_increase).setOnClickListener {
+        view.findViewById<TextView>(R.id.tv_increase).setOnClickListener {
             view.findViewById<TextView>(R.id.tv_level).text =
                     CharacterClassesService(context).increaseCharacterClassesLevel(char).level.toString()
         }

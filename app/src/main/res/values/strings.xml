@@ -36,6 +36,8 @@
     <string name="cannot_decrease_level">Can\'t decrease level</string>
     <string name="select_character">Select a Character</string>
     <string name="change_race">Change Race</string>
+    <string name="change">Change</string>
+    <string name="delete">Delete</string>
 
     <string-array name="item_type">
         <item>Simple Weapons</item>
