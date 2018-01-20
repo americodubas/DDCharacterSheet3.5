@@ -16,6 +16,7 @@ class CharacterService(val context: Context) {
     private val characterDao = DatabaseHelper.getInstance(context).characterDao()
     private val defaultRaceId: Long = 2
     private val defaultName = "Unknown"
+    private val defaultLevel = 1
 
     /**
      * Returns a [CharacterDto] by [id].
@@ -36,8 +37,12 @@ class CharacterService(val context: Context) {
      */
     fun insertEmptyCharacter(): Long {
         val character = Character()
-        character.name = defaultName
-        character.raceId = defaultRaceId
+        with(character) {
+            name = defaultName
+            raceId = defaultRaceId
+            level = defaultLevel
+        }
+
         character.id = characterDao.insertCharacter(character)
 
         CharacterClassesService(context).insertDefaultCharacterClasses(character)

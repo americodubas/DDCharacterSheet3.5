@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.activity.EditCharacterActivity
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.exception.CannotDecreaseCharacterClassesLevel
 import com.americo.ddcharactersheet35.service.CharacterClassesService
+import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.toast
 
 /**
@@ -53,6 +55,15 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
         }
     }
 
+    private fun changeCharacterLevel(amount: Int) {
+        if(context is EditCharacterActivity) {
+            val levelTv = context.find<TextView>(R.id.tv_character_level)
+            var level = levelTv.text.toString().toInt()
+            level += amount
+            levelTv.text = level.toString()
+        }
+    }
+
     /**
      * Decrease the level of the characterClass.
      */
@@ -62,6 +73,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
             try {
                 view.findViewById<TextView>(R.id.tv_level).text =
                         CharacterClassesService(context).decreaseCharacterClassesLevel(char).level.toString()
+                changeCharacterLevel(-1)
             }catch (e: CannotDecreaseCharacterClassesLevel){
                 toast(context, context.getString(R.string.cannot_decrease_level))
             }
@@ -75,6 +87,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
         view.findViewById<TextView>(R.id.tv_increase).setOnClickListener {
             view.findViewById<TextView>(R.id.tv_level).text =
                     CharacterClassesService(context).increaseCharacterClassesLevel(char).level.toString()
+            changeCharacterLevel(1)
         }
     }
 

@@ -51,7 +51,8 @@
                     android:padding="@dimen/smallPadding"
                     android:text="@string/change"
                     android:textColor="@color/colorAccent"
-                    android:textSize="@dimen/largeTextSize"/>
+                    android:textSize="@dimen/largeTextSize"
+                    />
 
             </LinearLayout>
 

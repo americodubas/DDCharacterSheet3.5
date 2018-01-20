@@ -21,7 +21,6 @@ class EditCharacterActivity : AppCompatActivity() {
 
     companion object{
         lateinit var id: String
-        val buttonClick = AlphaAnimation(1f, 0.8f)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +33,6 @@ class EditCharacterActivity : AppCompatActivity() {
 
     private fun editRaceListener() {
         find<TextView>(R.id.tv_race).setOnClickListener{
-//            it.startAnimation(buttonClick)
             it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.click))
             val intent = Intent(this, EditRaceActivity::class.java)
             intent.putExtra("id", id)
