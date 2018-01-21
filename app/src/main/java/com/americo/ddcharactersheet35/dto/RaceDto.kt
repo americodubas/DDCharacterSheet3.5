@@ -9,6 +9,7 @@ package com.americo.ddcharactersheet35.dto
 class RaceDto {
     var id: Long = 0
     var name: String = ""
+    var description: String = ""
 
     override fun toString(): String {
         return name

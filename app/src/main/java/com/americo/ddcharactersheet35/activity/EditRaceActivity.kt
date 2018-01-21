@@ -3,10 +3,14 @@ package com.americo.ddcharactersheet35.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.dto.RaceDto
@@ -29,6 +33,7 @@ class EditRaceActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_race)
         createToolbar(getString(R.string.edit_race))
         setRaces()
+        setRaceSelectListener()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -52,10 +57,25 @@ class EditRaceActivity : AppCompatActivity() {
                 ArrayAdapter<RaceDto>(this,R.layout.support_simple_spinner_dropdown_item,races)
     }
 
+    private fun setRaceSelectListener() {
+        find<Spinner>(R.id.sp_character_race).onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                find<TextView>(R.id.tv_race_description).text =
+                        Html.fromHtml(races.find { id == it.id }?.description)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+    }
+
     override fun onResume() {
         super.onResume()
         id = intent.getStringExtra("id")
         character = CharacterService(this).getCharacter(id)
-        find<Spinner>(R.id.sp_character_race).setSelection(races.indexOfFirst { character.raceId == it.id })
+
+        find<TextView>(R.id.tv_race_description).text = races.find { character.raceId == it.id }?.description
+        find<Spinner>(R.id.sp_character_race).setSelection(races.indexOfFirst {character.raceId == it.id})
     }
 }

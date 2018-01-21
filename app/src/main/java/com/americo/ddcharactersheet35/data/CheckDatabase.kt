@@ -25,9 +25,10 @@ class CheckDatabase(private var myContext: Context) {
     }
 
     private fun verifyDatabase() {
-        if ( !databaseExists() ) {
+        //TODO don't forget to uncomment this
+//        if ( !databaseExists() ) {
             createDatabaseFromAssets()
-        }
+//        }
     }
 
     private fun databaseExists(): Boolean {

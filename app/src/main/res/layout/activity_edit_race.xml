@@ -16,8 +16,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/label"
             android:text="@string/race"/>
 
         <Spinner
@@ -28,5 +27,21 @@
             android:prompt="@string/select_race"/>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="@dimen/padding"
+        android:background="@color/colorAccentDark" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/label"
+            android:id="@+id/tv_race_description"/>
+
+    </ScrollView>
 
 </LinearLayout>
