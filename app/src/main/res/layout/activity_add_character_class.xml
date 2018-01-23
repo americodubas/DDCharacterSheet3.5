@@ -44,4 +44,17 @@
 
     </LinearLayout>
 
+    <View style="@style/accentDarkLine"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            style="@style/label"
+            android:id="@+id/tv_description"/>
+
+    </ScrollView>
+
+
 </LinearLayout>

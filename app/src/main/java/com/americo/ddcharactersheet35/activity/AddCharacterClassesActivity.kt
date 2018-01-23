@@ -3,11 +3,11 @@ package com.americo.ddcharactersheet35.activity
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
+import android.view.View
+import android.widget.*
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.dto.ClassesDto
@@ -28,6 +28,22 @@ class AddCharacterClassesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_character_class)
         createToolbar(getString(R.string.add_class))
+        setClassesSelectListener()
+    }
+
+    private fun setClassesSelectListener() {
+        find<Spinner>(R.id.sp_class).onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                find<TextView>(R.id.tv_description).text =
+                        Html.fromHtml(
+                                classes[position].description
+                        )
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -65,5 +81,7 @@ class AddCharacterClassesActivity : AppCompatActivity() {
 
         find<Spinner>(R.id.sp_class).adapter =
                 ArrayAdapter<ClassesDto>(this,R.layout.support_simple_spinner_dropdown_item, classes)
+
+        find<TextView>(R.id.tv_description).text = Html.fromHtml(classes.first().description)
     }
 }

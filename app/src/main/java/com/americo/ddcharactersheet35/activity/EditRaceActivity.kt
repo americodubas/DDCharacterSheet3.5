@@ -61,7 +61,9 @@ class EditRaceActivity : AppCompatActivity() {
         find<Spinner>(R.id.sp_character_race).onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 find<TextView>(R.id.tv_race_description).text =
-                        Html.fromHtml(races.find { id == it.id }?.description)
+                        Html.fromHtml(
+                                races[position].description
+                        )
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -75,7 +77,11 @@ class EditRaceActivity : AppCompatActivity() {
         id = intent.getStringExtra("id")
         character = CharacterService(this).getCharacter(id)
 
-        find<TextView>(R.id.tv_race_description).text = races.find { character.raceId == it.id }?.description
-        find<Spinner>(R.id.sp_character_race).setSelection(races.indexOfFirst {character.raceId == it.id})
+        //this will call the setRaceSelectListener to set the description
+        find<Spinner>(R.id.sp_character_race).setSelection(
+                races.indexOfFirst {
+                    character.raceId == it.id
+                }
+        )
     }
 }

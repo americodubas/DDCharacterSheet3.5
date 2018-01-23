@@ -19,5 +19,6 @@ class Classes {
 
     var spellcaster: Int = 0
     var name: String = ""
+    var description: String = ""
 
 }

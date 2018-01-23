@@ -9,6 +9,7 @@ package com.americo.ddcharactersheet35.dto
 class ClassesDto {
     var id: Long = 0
     var name: String = ""
+    var description: String = ""
     var spellcaster: Int = 0
 
     override fun toString(): String {

@@ -34,7 +34,7 @@ inline fun <reified T: View> Fragment.find(id: Int): T = activity!!.findViewById
  *
  * Works as an universal converter between Entities and DTOs.
  */
-inline fun <F, reified T> convertFromTo( e: F): T = ModelMapper().map(e, T::class.java)
+inline fun <F, reified T> convert(e: F): T = ModelMapper().map(e, T::class.java)
 
 /**
  * Returns a [ArrayList] from [T] class with properties from the [ArrayList] of the [F] class
@@ -42,7 +42,7 @@ inline fun <F, reified T> convertFromTo( e: F): T = ModelMapper().map(e, T::clas
  *
  * Works as an universal list converter between Entities and DTOs.
  */
-inline fun <F, reified T> convertFromTo(f: List<F>): List<T> {
+inline fun <F, reified T> convert(f: List<F>): List<T> {
     val t = ArrayList<T>(f.size)
     val m = ModelMapper()
     f.forEach {

@@ -23,7 +23,7 @@ interface CharacterClassesDao {
     fun getCharacterClasses(id: Long): List<CharacterClassesDto>
 
     @Query("""
-        select cl._id, cl.name, cl.spellcaster
+        select cl._id, cl.name, cl.spellcaster, cl.description
         from classes cl
         left join character_classes ch on ch.classes_id = cl._id and ch.character_id = :id
         where ch._id is null

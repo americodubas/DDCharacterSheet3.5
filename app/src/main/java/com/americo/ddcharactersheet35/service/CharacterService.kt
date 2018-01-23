@@ -4,7 +4,7 @@ import android.content.Context
 import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.model.Character
-import com.americo.ddcharactersheet35.util.convertFromTo
+import com.americo.ddcharactersheet35.util.convert
 
 /**
  * Created by Americo on 27/05/2017.
@@ -22,14 +22,14 @@ class CharacterService(val context: Context) {
      * Returns a [CharacterDto] by [id].
      */
     fun getCharacter(id: String): CharacterDto {
-        return convertFromTo(characterDao.getCharacter(id.toLong()))
+        return convert(characterDao.getCharacter(id.toLong()))
     }
 
     /**
      * Returns a [List] of all [CharacterDto].
      */
     fun getAllCharacters(): List<CharacterDto> {
-        return convertFromTo(characterDao.getAllCharacters())
+        return convert(characterDao.getAllCharacters())
     }
 
     /**
@@ -53,7 +53,7 @@ class CharacterService(val context: Context) {
      * Update the [CharacterDto].
      */
     fun updateCharacter(characterDto: CharacterDto) {
-        characterDao.updateCharacter(convertFromTo(characterDto))
+        characterDao.updateCharacter(convert(characterDto))
     }
 
 }
