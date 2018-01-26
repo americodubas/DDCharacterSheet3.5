@@ -19,6 +19,15 @@ class CharacterService(val context: Context) {
     private val defaultLevel = 1
 
     /**
+     * Update the [Character] level by the [amount] passed.
+     */
+    fun updateCharacterLevel(id: Long, amount: Int) {
+        val character = characterDao.getCharacter(id)
+        character.level += amount
+        characterDao.updateCharacter(character)
+    }
+
+    /**
      * Returns a [CharacterDto] by [id].
      */
     fun getCharacter(id: String): CharacterDto {

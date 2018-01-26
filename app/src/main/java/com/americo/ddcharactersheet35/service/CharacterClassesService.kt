@@ -46,13 +46,17 @@ class CharacterClassesService(val context: Context) {
      */
     fun insertCharacterClasses(characterClassesDto: CharacterClassesDto){
         characterClassesDao.insertCharacterClasses(convert(characterClassesDto))
+
+        CharacterService(context).updateCharacterLevel(
+                characterClassesDto.characterId,
+                characterClassesDto.level)
     }
 
     /**
      * Delete the relation of [CharacterClassesDto].
      */
-    fun deleteCharacterClasses(characterClasses: CharacterClassesDto){
-        characterClassesDao.deleteCharacterClasses(convert(characterClasses))
+    fun deleteCharacterClasses(characterClassesDto: CharacterClassesDto){
+        characterClassesDao.deleteCharacterClasses(convert(characterClassesDto))
     }
 
     /**

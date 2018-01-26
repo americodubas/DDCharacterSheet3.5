@@ -51,6 +51,7 @@ class EditCharacterClassAdapter(val context: Context, var characterClasses: List
         view.findViewById<TextView>(R.id.bt_remove).setOnClickListener {
             CharacterClassesService(context).deleteCharacterClasses(char)
             characterClasses = characterClasses.minus(char)
+            changeCharacterLevel(char.level * -1)
             notifyDataSetChanged()
         }
     }

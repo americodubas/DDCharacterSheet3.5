@@ -35,7 +35,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            style="@style/label"
+            style="@style/field"
             android:id="@+id/tv_race_description"/>
 
     </ScrollView>
