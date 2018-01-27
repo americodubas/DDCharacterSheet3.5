@@ -1,6 +1,7 @@
 package com.americo.ddcharactersheet35.data
 
-import android.arch.persistence.room.*
+import android.arch.persistence.room.Dao
+import android.arch.persistence.room.Query
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.model.CharacterClasses
 import com.americo.ddcharactersheet35.model.Classes
@@ -11,7 +12,7 @@ import com.americo.ddcharactersheet35.model.Classes
  * DAO responsible for the [CharacterClasses].
  */
 @Dao
-interface CharacterClassesDao {
+interface CharacterClassesDao: BaseDao<CharacterClasses> {
 
     @Query("""
         select ch._id id, ch.character_id characterId, ch.classes_id classesId,
@@ -29,14 +30,5 @@ interface CharacterClassesDao {
         where ch._id is null
         """)
     fun getNotUsedClasses(id: Long): List<Classes>
-
-    @Insert
-    fun insertCharacterClasses(characterClasses: CharacterClasses): Long
-
-    @Delete
-    fun deleteCharacterClasses(characterClasses: CharacterClasses)
-
-    @Update
-    fun updateCharacterClasses(characterClasses: CharacterClasses)
 
 }

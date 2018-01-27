@@ -31,7 +31,7 @@ class CharacterClassesService(val context: Context) {
             level = defaultLevel
         }
 
-        characterClassesDao.insertCharacterClasses(characterClasses)
+        characterClassesDao.insert(characterClasses)
     }
 
     /**
@@ -45,7 +45,7 @@ class CharacterClassesService(val context: Context) {
      * Insert the relation of [CharacterClassesDto].
      */
     fun insertCharacterClasses(characterClassesDto: CharacterClassesDto){
-        characterClassesDao.insertCharacterClasses(convert(characterClassesDto))
+        characterClassesDao.insert(convert(characterClassesDto))
 
         CharacterService(context).updateCharacterLevel(
                 characterClassesDto.characterId,
@@ -56,7 +56,7 @@ class CharacterClassesService(val context: Context) {
      * Delete the relation of [CharacterClassesDto].
      */
     fun deleteCharacterClasses(characterClassesDto: CharacterClassesDto){
-        characterClassesDao.deleteCharacterClasses(convert(characterClassesDto))
+        characterClassesDao.delete(convert(characterClassesDto))
     }
 
     /**
@@ -64,7 +64,7 @@ class CharacterClassesService(val context: Context) {
      */
     fun increaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         characterClassDto.level += 1
-        characterClassesDao.updateCharacterClasses(convert(characterClassDto))
+        characterClassesDao.update(convert(characterClassDto))
         return characterClassDto
     }
 
@@ -76,7 +76,7 @@ class CharacterClassesService(val context: Context) {
     fun decreaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         if (!canDecreaseLevel(characterClassDto)) throw CannotDecreaseCharacterClassesLevel()
         characterClassDto.level -= 1
-        characterClassesDao.updateCharacterClasses(convert(characterClassDto))
+        characterClassesDao.update(convert(characterClassDto))
         return characterClassDto
     }
 

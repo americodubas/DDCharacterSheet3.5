@@ -24,7 +24,7 @@ class CharacterService(val context: Context) {
     fun updateCharacterLevel(id: Long, amount: Int) {
         val character = characterDao.getCharacter(id)
         character.level += amount
-        characterDao.updateCharacter(character)
+        characterDao.update(character)
     }
 
     /**
@@ -52,7 +52,7 @@ class CharacterService(val context: Context) {
             level = defaultLevel
         }
 
-        character.id = characterDao.insertCharacter(character)
+        character.id = characterDao.insert(character)
 
         CharacterClassesService(context).insertDefaultCharacterClasses(character)
         return character.id
@@ -62,7 +62,7 @@ class CharacterService(val context: Context) {
      * Update the [CharacterDto].
      */
     fun updateCharacter(characterDto: CharacterDto) {
-        characterDao.updateCharacter(convert(characterDto))
+        characterDao.update(convert(characterDto))
     }
 
 }

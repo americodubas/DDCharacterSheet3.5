@@ -10,7 +10,7 @@ import com.americo.ddcharactersheet35.model.Race
  * DAO responsible for the [Race]
  */
 @Dao
-interface RaceDao {
+interface RaceDao: BaseDao<Race> {
 
     @Query("select * from race where _id = :id")
     fun getRace(id: Long): Race

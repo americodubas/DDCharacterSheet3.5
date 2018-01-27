@@ -11,7 +11,7 @@ import com.americo.ddcharactersheet35.model.Spell
  *
  */
 @Dao
-interface SpellDao {
+interface SpellDao: BaseDao<Spell> {
 
     @Query("select * from spell where _id = :id")
     fun getSpellById(id: Long): Spell

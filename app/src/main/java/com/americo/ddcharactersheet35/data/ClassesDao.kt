@@ -10,7 +10,7 @@ import com.americo.ddcharactersheet35.model.Classes
  * DAO responsible for the [Classes].
  */
 @Dao
-interface ClassesDao {
+interface ClassesDao: BaseDao<Classes> {
 
     @Query("select * from classes where _id = :id")
     fun getClasses(id: Long): Classes
