@@ -18,7 +18,7 @@ class SpellFilterActivity : AppCompatActivity() {
         find<Button>(R.id.bt_search_spell).setOnClickListener{searchSpell()}
     }
 
-    fun searchSpell() {
+    private fun searchSpell() {
         val intent = Intent(this, DisplaySpellListActivity::class.java)
         intent.putExtra("name", find<EditText>(R.id.tv_spell_name).text.toString() )
         intent.putExtra("class", find<Spinner>(R.id.sp_spell_class).selectedItem.toString())

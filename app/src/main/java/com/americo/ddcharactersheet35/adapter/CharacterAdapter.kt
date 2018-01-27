@@ -11,7 +11,6 @@ import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.activity.CharacterActivity
 import com.americo.ddcharactersheet35.dto.CharacterDto
-import com.americo.ddcharactersheet35.model.Character
 
 /**
  * Created by Americo on 27/05/2017.
@@ -20,17 +19,16 @@ import com.americo.ddcharactersheet35.model.Character
  * Sets a click listener to start the [CharacterActivity] of the chosen one.
  *
  */
-class CharacterAdapter(val context: Context, val characters: List<CharacterDto>): BaseAdapter() {
+class CharacterAdapter(val context: Context, private val characters: List<CharacterDto>): BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View
 
-        if (convertView == null){
-            view = inflater.inflate(R.layout.view_character, parent, false)
-        }else{
-            view = convertView
+        view = when(convertView){
+            null -> inflater.inflate(R.layout.view_character, parent, false)
+            else -> convertView
         }
 
         //TODO create image or icon for characters (maybe by class)

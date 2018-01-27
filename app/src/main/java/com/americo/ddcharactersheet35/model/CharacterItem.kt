@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
 /**
  * Created by Americo on 05/08/2017.
  *
- * Entity of the Character's Itens
+ * Entity of the Character's Items
  *
  */
 @Entity(

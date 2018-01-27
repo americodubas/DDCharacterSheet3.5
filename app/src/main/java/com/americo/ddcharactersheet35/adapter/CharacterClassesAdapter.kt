@@ -14,16 +14,15 @@ import com.americo.ddcharactersheet35.dto.CharacterClassesDto
  *
  * Adapter to show the character classes.
  */
-class CharacterClassesAdapter(val context: Context, val characterClasses: List<CharacterClassesDto>) : BaseAdapter() {
+class CharacterClassesAdapter(val context: Context, private val characterClasses: List<CharacterClassesDto>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View
 
-        if (convertView == null) {
-            view = inflater.inflate(R.layout.view_character_class, parent, false)
-        } else {
-            view = convertView
+        view = when (convertView) {
+            null -> inflater.inflate(R.layout.view_character_class, parent, false)
+            else -> convertView
         }
 
         showCharacter(view, position)

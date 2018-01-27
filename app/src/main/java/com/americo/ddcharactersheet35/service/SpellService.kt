@@ -2,9 +2,7 @@ package com.americo.ddcharactersheet35.service
 
 import android.content.Context
 import com.americo.ddcharactersheet35.data.DatabaseHelper
-import com.americo.ddcharactersheet35.data.SpellDao
 import com.americo.ddcharactersheet35.model.Spell
-import com.americo.ddcharactersheet35.model.Spellcaster
 
 /**
  * Created by Americo on 01/05/2017.

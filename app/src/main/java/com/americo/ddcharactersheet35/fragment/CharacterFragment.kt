@@ -9,7 +9,6 @@ import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.CharacterClassesAdapter
-import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
 import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.service.RaceService
@@ -74,7 +73,7 @@ class CharacterFragment : Fragment() {
     }
 
     companion object {
-        private val ID = "id"
+        const val ID = "id"
 
         /**
          * Use this factory method to create a new instance of

@@ -10,7 +10,6 @@ import android.widget.SimpleAdapter
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.model.Spell
-import com.americo.ddcharactersheet35.service.SpellService
 import com.americo.ddcharactersheet35.util.find
 
 class DisplaySpellListActivity : AppCompatActivity() {
@@ -45,7 +44,7 @@ class DisplaySpellListActivity : AppCompatActivity() {
                 AdapterView.OnItemClickListener { _, view, _, _ -> displaySpell(view) }
     }
 
-    fun displaySpell(view: View) {
+    private fun displaySpell(view: View) {
         val intent = Intent(this, DisplaySpellActivity::class.java)
         intent.putExtra("id", view.findViewById<TextView>(R.id.tv_spell_id).text.toString())
         startActivity(intent)

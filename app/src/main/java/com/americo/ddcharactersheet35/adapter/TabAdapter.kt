@@ -14,18 +14,14 @@ class TabAdapter(fm: FragmentManager, var id: String) : FragmentStatePagerAdapte
 
     override fun getItem(position: Int): Fragment {
 
-        val fragment: Fragment
-
-        when (position) {
-            0 -> fragment = CharacterFragment.newInstance(id)
-            1 -> fragment = InventoryFragment()
-            2 -> fragment = FeatsFragment()
-            3 -> fragment = SpellsFragment()
-            4 -> fragment = NotesFragment()
-            else -> fragment = CharacterFragment()
+        return when (position) {
+            0 -> CharacterFragment.newInstance(id)
+            1 -> InventoryFragment()
+            2 -> FeatsFragment()
+            3 -> SpellsFragment()
+            4 -> NotesFragment()
+            else -> CharacterFragment()
         }
-
-        return fragment
 
     }
 

@@ -14,13 +14,15 @@ import java.io.FileOutputStream
 class CheckDatabase(private var myContext: Context) {
 
     companion object {
-        val databaseName = "ded35"
+        const val databaseName = "ded35"
     }
 
     private val databaseFullPath: String
 
     init {
         this.databaseFullPath = "/data/data/${myContext.packageName}/databases/$databaseName"
+        println("1 $databaseFullPath")
+        println("2 ${myContext.filesDir.path}")
         verifyDatabase()
     }
 

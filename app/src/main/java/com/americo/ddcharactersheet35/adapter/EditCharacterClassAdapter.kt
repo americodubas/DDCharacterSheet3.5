@@ -23,7 +23,7 @@ import com.americo.ddcharactersheet35.util.toast
  * 3- Delete class
  *
  */
-class EditCharacterClassAdapter(val context: Context, var characterClasses: List<CharacterClassesDto>): BaseAdapter() {
+class EditCharacterClassAdapter(val context: Context, private var characterClasses: List<CharacterClassesDto>): BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
