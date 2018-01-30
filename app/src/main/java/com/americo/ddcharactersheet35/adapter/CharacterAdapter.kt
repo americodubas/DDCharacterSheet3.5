@@ -31,8 +31,6 @@ class CharacterAdapter(val context: Context, private val characters: List<Charac
             else -> convertView
         }
 
-        //TODO create image or icon for characters (maybe by class)
-
         showName(view, position)
 
         chooseCharacterListener(view, position)
@@ -42,6 +40,7 @@ class CharacterAdapter(val context: Context, private val characters: List<Charac
 
     private fun showName(view: View, position: Int) {
         view.findViewById<TextView>(R.id.tv_character_name).text = characters[position].name
+        view.findViewById<ImageView>(R.id.iv_character).setImageResource(characters[position].portrait)
     }
 
     private fun chooseCharacterListener(view: View, position: Int) {

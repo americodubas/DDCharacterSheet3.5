@@ -18,10 +18,10 @@
         android:id="@+id/gv_character"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:columnWidth="90dp"
+        android:columnWidth="@dimen/characterGrid"
         android:numColumns="auto_fit"
-        android:verticalSpacing="10dp"
-        android:horizontalSpacing="10dp"/>
+        android:verticalSpacing="@dimen/padding"
+        android:horizontalSpacing="@dimen/padding"/>
 
     <Button
         android:id="@+id/bt_new_character"

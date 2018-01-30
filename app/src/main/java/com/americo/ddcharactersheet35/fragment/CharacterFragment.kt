@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
@@ -55,6 +56,7 @@ class CharacterFragment : Fragment() {
             find<TextView>(R.id.tv_character_skin).text = skin
             find<TextView>(R.id.tv_character_eyes).text = eyes
             find<TextView>(R.id.tv_character_hair).text = hair
+            find<ImageView>(R.id.iv_portrait).setImageResource(portrait)
         }
 
         find<TextView>(R.id.tv_character_race).text =

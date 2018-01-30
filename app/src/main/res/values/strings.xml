@@ -38,7 +38,8 @@
     <string name="change_race">Change Race</string>
     <string name="change">Change</string>
     <string name="delete">Delete</string>
-    <string name="character_image">Character Image</string>
+    <string name="character_portrait">Character Portrait</string>
+    <string name="change_portrait">Change Portrait</string>
 
     <string-array name="item_type">
         <item>Simple Weapons</item>

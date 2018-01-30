@@ -19,6 +19,18 @@
             android:orientation="vertical"
             android:padding="@dimen/padding">
 
+            <ImageView
+                android:id="@+id/iv_portrait"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/characterGrid"
+                android:contentDescription="@string/character_portrait"/>
+
+            <TextView
+                android:id="@+id/tv_change_portrait"
+                style="@style/characterName"
+                android:textAlignment="center"
+                android:text="@string/change_portrait"/>
+
             <TextView
                 style="@style/label"
                 android:text="@string/name"/>

@@ -21,16 +21,13 @@ class CheckDatabase(private var myContext: Context) {
 
     init {
         this.databaseFullPath = "/data/data/${myContext.packageName}/databases/$databaseName"
-        println("1 $databaseFullPath")
-        println("2 ${myContext.filesDir.path}")
         verifyDatabase()
     }
 
     private fun verifyDatabase() {
-        //TODO don't forget to uncomment this
-//        if ( !databaseExists() ) {
+        if ( !databaseExists() ) {
             createDatabaseFromAssets()
-//        }
+        }
     }
 
     private fun databaseExists(): Boolean {

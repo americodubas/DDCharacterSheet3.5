@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
@@ -28,6 +29,24 @@ class EditCharacterActivity : AppCompatActivity() {
         createToolbar(getString(R.string.edit_character))
         editRaceListener()
         addClassListener()
+        changePortraitListener()
+    }
+
+    private fun changePortraitListener() {
+        find<ImageView>(R.id.iv_portrait).setOnClickListener {
+            intentEditPortraitActivity()
+        }
+
+        find<TextView>(R.id.tv_change_portrait).setOnClickListener {
+            intentEditPortraitActivity()
+        }
+
+    }
+
+    private fun intentEditPortraitActivity() {
+        val intent = Intent(this, EditRaceActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 
     private fun editRaceListener() {
@@ -110,6 +129,7 @@ class EditCharacterActivity : AppCompatActivity() {
             find<EditText>(R.id.et_character_skin).textString(skin)
             find<EditText>(R.id.et_character_eyes).textString(eyes)
             find<EditText>(R.id.et_character_hair).textString(hair)
+            find<ImageView>(R.id.iv_portrait).setImageResource(portrait)
         }
 
         find<EditText>(R.id.tv_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)

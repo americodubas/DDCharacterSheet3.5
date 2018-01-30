@@ -40,6 +40,7 @@ class Character {
     var reflex: Int = 0
     var will: Int = 0
     var hp: Int = 0
+    var portrait: Int = 0
     var name: String = ""
     var alignment: String = ""
     var deity: String = ""

@@ -5,6 +5,7 @@ import com.americo.ddcharactersheet35.data.DatabaseHelper
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.model.Character
 import com.americo.ddcharactersheet35.util.convert
+import com.americo.ddcharactersheet35.util.portraits
 
 /**
  * Created by Americo on 27/05/2017.
@@ -17,6 +18,7 @@ class CharacterService(val context: Context) {
     private val defaultRaceId: Long = 2
     private val defaultName = "Unknown"
     private val defaultLevel = 1
+    private val defaultPortrait = portraits[0]
 
     /**
      * Update the [Character] level by the [amount] passed.
@@ -50,6 +52,7 @@ class CharacterService(val context: Context) {
             name = defaultName
             raceId = defaultRaceId
             level = defaultLevel
+            portrait = defaultPortrait
         }
 
         character.id = characterDao.insert(character)

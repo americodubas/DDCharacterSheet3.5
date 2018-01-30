@@ -9,4 +9,6 @@
     <color name="colorSecondaryText">#757575</color>
     <color name="colorTextIcons">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="yellow">#FFD600</color>
+    <color name="shade">#70000000</color>
 </resources>

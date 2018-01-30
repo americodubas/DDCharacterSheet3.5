@@ -18,6 +18,34 @@ import org.modelmapper.ModelMapper
 
 //File to keep functions to make my life easier and to try new stuff
 
+const val ID = "id"
+
+/**
+ * Character portraits
+ */
+val portraits = arrayListOf(R.drawable.barbute, R.drawable.battle_gear, R.drawable.black_knight_helm,
+        R.drawable.brutal_helm, R.drawable.chess_king, R.drawable.chess_queen,
+        R.drawable.closed_barbute, R.drawable.cowled, R.drawable.cracked_helm,
+        R.drawable.crested_helmet, R.drawable.crown, R.drawable.crown_coin,
+        R.drawable.crowned_skull, R.drawable.dwarf_helmet, R.drawable.dwarf_king,
+        R.drawable.elf_helmet, R.drawable.heavy_helm, R.drawable.hood,
+        R.drawable.jewel_crown, R.drawable.laurel_crown, R.drawable.laurels,
+        R.drawable.overlord_helm, R.drawable.pirate_hat, R.drawable.pointy_hat,
+        R.drawable.pope_crown, R.drawable.queen_crown, R.drawable.robin_hood_hat,
+        R.drawable.samurai_helmet, R.drawable.sharp_crown, R.drawable.spartan_helmet,
+        R.drawable.tiara, R.drawable.viking_helmet, R.drawable.visored_helm ,
+        R.drawable.warlock_hood)
+
+/**
+ *
+ */
+inline fun <reified  T> Activity.startWithId(id: String){
+    startActivity(
+            Intent(this, T::class.java)
+                    .putExtra(ID, id)
+    )
+}
+
 /**
  * Shortcut to call findViewById on [Activity].
  */

@@ -33,6 +33,7 @@ class CharacterDto {
         var will: Int = 0
         var fullHp: Int = 0
         var hp: Int = 0
+        var portrait: Int = 0
         var speed: String = ""
 
 }
