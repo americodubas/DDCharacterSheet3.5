@@ -37,6 +37,22 @@ val portraits = arrayListOf(R.drawable.barbute, R.drawable.battle_gear, R.drawab
         R.drawable.warlock_hood)
 
 /**
+ * Character portraits name
+ */
+val portraitsName = arrayListOf("Barbute", "Battle Gear", "Black Knight Helm",
+        "Brutal Helm", "Chess King", "Chess Queen",
+        "Closed Barbute", "Cowled", "Cracked Helm",
+        "Crested Helmet", "Crown", "Crown Coin",
+        "Crowned Skull", "Dwarf Helmet", "Dwarf King",
+        "Elf Helmet", "Heavy Helm", "Hood",
+        "Jewel Crown", "Laurel Crown", "Laurels",
+        "Overlord Helm", "Pirate Hat", "Pointy Hat",
+        "Pope Crown", "Queen Crown", "Robin Hood Hat",
+        "Samurai Helmet", "Sharp Crown", "Spartan Helmet",
+        "Tiara", "Viking Helmet", "Visor Helm",
+        "Warlock Hood")
+
+/**
  * Shortcut to create an [Intent] and call startActivity()
  */
 inline fun <reified  T> Activity.startWithId(id: String) {

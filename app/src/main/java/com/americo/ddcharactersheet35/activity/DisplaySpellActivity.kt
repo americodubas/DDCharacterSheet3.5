@@ -13,7 +13,7 @@ class DisplaySpellActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_spell)
 
-        val spell = SpellService(this).getSpellById(intent.getStringExtra("id"))
+        val spell = SpellService(this).get(intent.getStringExtra("id"))
 
         find<TextView>(R.id.tv_spell_name).text = spell.name
         find<TextView>(R.id.tv_spell_school).text = spell.school

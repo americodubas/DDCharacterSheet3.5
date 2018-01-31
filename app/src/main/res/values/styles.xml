@@ -19,6 +19,24 @@
         <item name="android:background">@color/shade</item>
     </style>
 
+    <style name="portraitGrid">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:columnWidth">@dimen/characterGrid</item>
+        <item name="android:numColumns">auto_fit</item>
+        <item name="android:verticalSpacing">@dimen/padding</item>
+        <item name="android:horizontalSpacing">@dimen/padding</item>
+    </style>
+
+    <style name="title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textSize">@dimen/extraLargeTextSize</item>
+        <item name="android:textColor">@color/colorAccentDark</item>
+    </style>
+
     <style name="label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
      */
     private fun newCharacterListener() {
         find<Button>(R.id.bt_new_character).setOnClickListener{
-            startWithId<CharacterActivity>(CharacterService(this).insertEmptyCharacter().toString())
+            startWithId<CharacterActivity>(CharacterService(this).insertEmpty().toString())
         }
     }
 
@@ -40,6 +40,6 @@ class MainActivity : AppCompatActivity() {
      * Show all characters on the [R.id.gv_character].
      */
     private fun showCharacters(){
-        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, CharacterService(this).getAllCharacters())
+        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, CharacterService(this).getAll())
     }
 }

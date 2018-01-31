@@ -15,7 +15,7 @@ class SpellService(val context: Context) {
 //        return SpellDao(context).getSpellsByNameClassCircle(name, spellClass, circle)
 //    }
 
-    fun getSpellById( id: String): Spell {
+    fun get( id: String): Spell {
 //        val spellDao = SpellDao(context)
 
 //        val spell = spellDao.getSpellById(id)

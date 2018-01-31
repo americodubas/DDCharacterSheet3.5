@@ -6,22 +6,12 @@
     android:orientation="vertical">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding"
-        android:text="@string/select_character"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccentDark"
-        android:textSize="@dimen/extraLargeTextSize"/>
+        style="@style/title"
+        android:text="@string/select_character" />
 
     <GridView
         android:id="@+id/gv_character"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:columnWidth="@dimen/characterGrid"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="@dimen/padding"
-        android:horizontalSpacing="@dimen/padding"/>
+        style="@style/portraitGrid"/>
 
     <Button
         android:id="@+id/bt_new_character"

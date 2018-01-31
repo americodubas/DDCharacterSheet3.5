@@ -23,7 +23,7 @@ class CharacterClassesService(val context: Context) {
     /**
      * Insert the default [CharacterClasses] to the [Character]
      */
-    fun insertDefaultCharacterClasses(character: Character) {
+    fun insertDefault(character: Character) {
         val characterClasses = CharacterClasses()
         with(characterClasses){
             characterId = character.id
@@ -37,17 +37,17 @@ class CharacterClassesService(val context: Context) {
     /**
      * Returns a [List] of [CharacterClassesDto] of the [Character] by it's [id].
      */
-    fun getCharacterClasses(id: String): List<CharacterClassesDto> {
+    fun get(id: String): List<CharacterClassesDto> {
         return characterClassesDao.getCharacterClasses(id.toLong())
     }
 
     /**
      * Insert the relation of [CharacterClassesDto].
      */
-    fun insertCharacterClasses(characterClassesDto: CharacterClassesDto){
+    fun insert(characterClassesDto: CharacterClassesDto){
         characterClassesDao.insert(convert(characterClassesDto))
 
-        CharacterService(context).updateCharacterLevel(
+        CharacterService(context).updateLevel(
                 characterClassesDto.characterId,
                 characterClassesDto.level)
     }
@@ -55,14 +55,14 @@ class CharacterClassesService(val context: Context) {
     /**
      * Delete the relation of [CharacterClassesDto].
      */
-    fun deleteCharacterClasses(characterClassesDto: CharacterClassesDto){
+    fun delete(characterClassesDto: CharacterClassesDto){
         characterClassesDao.delete(convert(characterClassesDto))
     }
 
     /**
      * Increase the level of the [CharacterClassesDto] by + 1.
      */
-    fun increaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
+    fun increaseLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         characterClassDto.level += 1
         characterClassesDao.update(convert(characterClassDto))
         return characterClassDto
@@ -73,7 +73,7 @@ class CharacterClassesService(val context: Context) {
      * The level won't be decreased if the [CharacterClassesDto] level is 1,
      * a [CannotDecreaseCharacterClassesLevel] will be throw.
      */
-    fun decreaseCharacterClassesLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
+    fun decreaseLevel(characterClassDto: CharacterClassesDto) : CharacterClassesDto {
         if (!canDecreaseLevel(characterClassDto)) throw CannotDecreaseCharacterClassesLevel()
         characterClassDto.level -= 1
         characterClassesDao.update(convert(characterClassDto))

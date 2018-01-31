@@ -40,6 +40,7 @@
     <string name="delete">Delete</string>
     <string name="character_portrait">Character Portrait</string>
     <string name="change_portrait">Change Portrait</string>
+    <string name="select_portrait">Select a Portrait</string>
 
     <string-array name="item_type">
         <item>Simple Weapons</item>
@@ -55,7 +56,7 @@
         <item>Two-Handed Melee Weapons</item>
         <item>Ranged Weapons</item>
     </string-array>
-    
+
     <string-array name="classes">
         <item>All classes</item>
         <item>Bard</item>

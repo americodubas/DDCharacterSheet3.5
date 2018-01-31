@@ -23,7 +23,8 @@
         <activity android:name=".activity.EditCharacterActivity" />
         <activity android:name=".activity.EditRaceActivity" />
         <activity android:name=".activity.EditClassesActivity" />
-        <activity android:name=".activity.AddCharacterClassesActivity"/>
+        <activity android:name=".activity.AddCharacterClassesActivity" />
+        <activity android:name=".activity.EditPortraitActivity" />
     </application>
 
 </manifest>

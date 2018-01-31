@@ -41,7 +41,7 @@ class CharacterFragment : Fragment() {
             return
         }
 
-        val char = CharacterService(context!!).getCharacter(id)
+        val char = CharacterService(context!!).get(id)
         with(char) {
             find<TextView>(R.id.tv_character_name).text = name
             find<TextView>(R.id.tv_character_level).textString(level)
@@ -60,10 +60,10 @@ class CharacterFragment : Fragment() {
         }
 
         find<TextView>(R.id.tv_character_race).text =
-                RaceService(context!!).getRace(char.raceId).name
+                RaceService(context!!).get(char.raceId).name
 
         val classesView = find<ListView>(R.id.lv_classes)
-        classesView.adapter = CharacterClassesAdapter(context!!, CharacterClassesService(context!!).getCharacterClasses(id))
+        classesView.adapter = CharacterClassesAdapter(context!!, CharacterClassesService(context!!).get(id))
         setListViewHeight(classesView)
 
     }

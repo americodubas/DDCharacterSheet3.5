@@ -18,7 +18,7 @@ class ClassesService(context: Context) {
     /**
      * Returns a [List] of all [ClassesDto].
      */
-    fun getAllClasses(): List<ClassesDto> {
+    fun getAll(): List<ClassesDto> {
         return convert(classesDao.getAllClasses())
     }
 

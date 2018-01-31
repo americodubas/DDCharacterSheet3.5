@@ -49,7 +49,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
      */
     private fun deleteListener(view: View, char: CharacterClassesDto) {
         view.findViewById<TextView>(R.id.bt_remove).setOnClickListener {
-            CharacterClassesService(context).deleteCharacterClasses(char)
+            CharacterClassesService(context).delete(char)
             characterClasses = characterClasses.minus(char)
             changeCharacterLevel(char.level * -1)
             notifyDataSetChanged()
@@ -73,7 +73,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
         view.findViewById<TextView>(R.id.tv_decrease).setOnClickListener {
             try {
                 view.findViewById<TextView>(R.id.tv_level).text =
-                        CharacterClassesService(context).decreaseCharacterClassesLevel(char).level.toString()
+                        CharacterClassesService(context).decreaseLevel(char).level.toString()
                 changeCharacterLevel(-1)
             }catch (e: CannotDecreaseCharacterClassesLevel){
                 toast(context, context.getString(R.string.cannot_decrease_level))
@@ -87,7 +87,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
     private fun increaseLevelListener(view: View, char: CharacterClassesDto) {
         view.findViewById<TextView>(R.id.tv_increase).setOnClickListener {
             view.findViewById<TextView>(R.id.tv_level).text =
-                    CharacterClassesService(context).increaseCharacterClassesLevel(char).level.toString()
+                    CharacterClassesService(context).increaseLevel(char).level.toString()
             changeCharacterLevel(1)
         }
     }

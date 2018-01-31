@@ -30,7 +30,7 @@ class CharacterActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        createToolbar(CharacterService(this).getCharacter(id).name)
+        createToolbar(CharacterService(this).get(id).name)
         super.onResume()
     }
 

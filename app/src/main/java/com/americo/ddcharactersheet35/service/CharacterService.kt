@@ -21,9 +21,19 @@ class CharacterService(val context: Context) {
     private val defaultPortrait = portraits[0]
 
     /**
+     * Update the [Character] portrait.
+     */
+    fun updatePortrait(id: String, portrait: Int) {
+        with(characterDao.getCharacter(id.toLong())){
+            this.portrait = portrait
+            characterDao.update(this)
+        }
+    }
+
+    /**
      * Update the [Character] level by the [amount] passed.
      */
-    fun updateCharacterLevel(id: Long, amount: Int) {
+    fun updateLevel(id: Long, amount: Int) {
         val character = characterDao.getCharacter(id)
         character.level += amount
         characterDao.update(character)
@@ -32,21 +42,21 @@ class CharacterService(val context: Context) {
     /**
      * Returns a [CharacterDto] by [id].
      */
-    fun getCharacter(id: String): CharacterDto {
+    fun get(id: String): CharacterDto {
         return convert(characterDao.getCharacter(id.toLong()))
     }
 
     /**
      * Returns a [List] of all [CharacterDto].
      */
-    fun getAllCharacters(): List<CharacterDto> {
+    fun getAll(): List<CharacterDto> {
         return convert(characterDao.getAllCharacters())
     }
 
     /**
      * Insert an empty [Character] with default values.
      */
-    fun insertEmptyCharacter(): Long {
+    fun insertEmpty(): Long {
         val character = Character()
         with(character) {
             name = defaultName
@@ -57,14 +67,14 @@ class CharacterService(val context: Context) {
 
         character.id = characterDao.insert(character)
 
-        CharacterClassesService(context).insertDefaultCharacterClasses(character)
+        CharacterClassesService(context).insertDefault(character)
         return character.id
     }
 
     /**
      * Update the [CharacterDto].
      */
-    fun updateCharacter(characterDto: CharacterDto) {
+    fun update(characterDto: CharacterDto) {
         characterDao.update(convert(characterDto))
     }
 

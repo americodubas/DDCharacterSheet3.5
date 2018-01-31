@@ -18,13 +18,13 @@ class RaceService(context: Context) {
     /**
      * Returns a [List] of all [RaceDto].
      */
-    fun getAllRaces(): List<RaceDto> {
+    fun getAll(): List<RaceDto> {
         return convert(raceDao.getAllRaces())
     }
 
     /**
      * Returns a [RaceDto] by the id
      */
-    fun getRace(id: Long): RaceDto = convert(raceDao.getRace(id))
+    fun get(id: Long): RaceDto = convert(raceDao.getRace(id))
 
 }

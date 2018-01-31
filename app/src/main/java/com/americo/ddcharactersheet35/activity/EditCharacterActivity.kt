@@ -44,7 +44,7 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     private fun intentEditPortraitActivity() {
-        startWithId<EditRaceActivity>(id)
+        startWithId<EditPortraitActivity>(id)
     }
 
     private fun editRaceListener() {
@@ -61,7 +61,7 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        id = intent.getStringExtra("id")
+        id = intent.getStringExtra(ID)
         showCharacter()
         super.onResume()
     }
@@ -85,7 +85,7 @@ class EditCharacterActivity : AppCompatActivity() {
      */
     private fun updateCharacter() {
         val service = CharacterService(this)
-        val characterDto = service.getCharacter(id)
+        val characterDto = service.get(id)
 
         with(characterDto) {
             name = find<EditText>(R.id.et_character_name).text.toString()
@@ -103,11 +103,11 @@ class EditCharacterActivity : AppCompatActivity() {
             hair = find<EditText>(R.id.et_character_hair).text.toString()
         }
 
-        service.updateCharacter(characterDto)
+        service.update(characterDto)
     }
 
     private fun showCharacter() {
-        val characterDto = CharacterService(this).getCharacter(id)
+        val characterDto = CharacterService(this).get(id)
 
         with(characterDto){
             find<EditText>(R.id.et_character_name).textString(name)
@@ -126,10 +126,10 @@ class EditCharacterActivity : AppCompatActivity() {
             find<ImageView>(R.id.iv_portrait).setImageResource(portrait)
         }
 
-        find<EditText>(R.id.tv_character_race).textString(RaceService(this).getRace(characterDto.raceId).name)
+        find<EditText>(R.id.tv_character_race).textString(RaceService(this).get(characterDto.raceId).name)
 
         val classesView = find<ListView>(R.id.lv_classes)
-        classesView.adapter = EditCharacterClassAdapter(this, CharacterClassesService(this).getCharacterClasses(id))
+        classesView.adapter = EditCharacterClassAdapter(this, CharacterClassesService(this).get(id))
         setListViewHeight(classesView)
 
     }

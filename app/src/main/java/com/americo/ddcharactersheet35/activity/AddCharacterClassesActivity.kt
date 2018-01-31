@@ -62,7 +62,7 @@ class AddCharacterClassesActivity : AppCompatActivity() {
         characterClassesDto.classesId = (find<Spinner>(R.id.sp_class).selectedItem as (ClassesDto)).id
         characterClassesDto.level = find<EditText>(R.id.et_level).text.toString().toInt()
 
-        CharacterClassesService(this).insertCharacterClasses(characterClassesDto)
+        CharacterClassesService(this).insert(characterClassesDto)
     }
 
     override fun onResume() {

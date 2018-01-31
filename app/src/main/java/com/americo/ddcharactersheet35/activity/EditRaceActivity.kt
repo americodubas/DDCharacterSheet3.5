@@ -48,11 +48,11 @@ class EditRaceActivity : AppCompatActivity() {
 
     private fun editRace() {
         character.raceId = (find<Spinner>(R.id.sp_character_race).selectedItem as (RaceDto)).id
-        CharacterService(this).updateCharacter(character)
+        CharacterService(this).update(character)
     }
 
     private fun setRaces() {
-        races = RaceService(this).getAllRaces()
+        races = RaceService(this).getAll()
         find<Spinner>(R.id.sp_character_race).adapter =
                 ArrayAdapter<RaceDto>(this,R.layout.support_simple_spinner_dropdown_item,races)
     }
@@ -75,7 +75,7 @@ class EditRaceActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         id = intent.getStringExtra("id")
-        character = CharacterService(this).getCharacter(id)
+        character = CharacterService(this).get(id)
 
         //this will call the setRaceSelectListener to set the description
         find<Spinner>(R.id.sp_character_race).setSelection(
