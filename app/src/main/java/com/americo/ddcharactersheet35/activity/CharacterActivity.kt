@@ -13,6 +13,7 @@ import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.util.SlidingTabLayout
 import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.find
+import com.americo.ddcharactersheet35.util.startWithId
 
 class CharacterActivity : AppCompatActivity() {
 
@@ -61,9 +62,7 @@ class CharacterActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.it_edit -> {
-                val intent = Intent(this, EditCharacterActivity::class.java)
-                intent.putExtra("id", id)
-                startActivity( intent )
+                startWithId<EditCharacterActivity>(id)
                 return true
             }
             R.id.it_change_char -> {

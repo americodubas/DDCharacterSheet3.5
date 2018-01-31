@@ -37,11 +37,21 @@ val portraits = arrayListOf(R.drawable.barbute, R.drawable.battle_gear, R.drawab
         R.drawable.warlock_hood)
 
 /**
- *
+ * Shortcut to create an [Intent] and call startActivity()
  */
-inline fun <reified  T> Activity.startWithId(id: String){
+inline fun <reified  T> Activity.startWithId(id: String) {
     startActivity(
             Intent(this, T::class.java)
+                    .putExtra(ID, id)
+    )
+}
+
+/**
+ * Shortcut to create an [Intent] and call startActivity()
+ */
+inline fun <reified  T> Fragment.startWithId(id: String) {
+    startActivity(
+            Intent(this.context, T::class.java)
                     .putExtra(ID, id)
     )
 }

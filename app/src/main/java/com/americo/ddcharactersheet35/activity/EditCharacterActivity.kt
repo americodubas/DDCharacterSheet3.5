@@ -44,25 +44,19 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     private fun intentEditPortraitActivity() {
-        val intent = Intent(this, EditRaceActivity::class.java)
-        intent.putExtra("id", id)
-        startActivity(intent)
+        startWithId<EditRaceActivity>(id)
     }
 
     private fun editRaceListener() {
         find<TextView>(R.id.tv_race).setOnClickListener{
             it.startAnimation(AnimationUtils.loadAnimation(this, R.anim.click))
-            val intent = Intent(this, EditRaceActivity::class.java)
-            intent.putExtra("id", id)
-            startActivity( intent )
+            startWithId<EditRaceActivity>(id)
         }
     }
 
     private fun addClassListener() {
         find<TextView>(R.id.tv_add_class).setOnClickListener{
-            val intent = Intent(this, AddCharacterClassesActivity::class.java)
-            intent.putExtra("id", id)
-            startActivity( intent )
+            startWithId<AddCharacterClassesActivity>(id)
         }
     }
 

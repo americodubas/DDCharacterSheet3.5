@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.model.Spell
 import com.americo.ddcharactersheet35.util.find
+import com.americo.ddcharactersheet35.util.startWithId
 
 class DisplaySpellListActivity : AppCompatActivity() {
 
@@ -45,9 +46,7 @@ class DisplaySpellListActivity : AppCompatActivity() {
     }
 
     private fun displaySpell(view: View) {
-        val intent = Intent(this, DisplaySpellActivity::class.java)
-        intent.putExtra("id", view.findViewById<TextView>(R.id.tv_spell_id).text.toString())
-        startActivity(intent)
+        startWithId<DisplaySpellActivity>(view.findViewById<TextView>(R.id.tv_spell_id).text.toString())
     }
 
 }
