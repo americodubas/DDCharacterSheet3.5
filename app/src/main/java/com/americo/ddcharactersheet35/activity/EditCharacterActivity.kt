@@ -2,7 +2,6 @@ package com.americo.ddcharactersheet35.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.animation.AnimationUtils
@@ -12,16 +11,16 @@ import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.EditCharacterClassAdapter
+import com.americo.ddcharactersheet35.base.BaseActivity
+import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.service.RaceService
 import com.americo.ddcharactersheet35.util.*
 
-class EditCharacterActivity : AppCompatActivity() {
+class EditCharacterActivity : BaseActivity() {
 
-    companion object{
-        lateinit var id: String
-    }
+    private lateinit var characterService: CharacterService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,17 +29,16 @@ class EditCharacterActivity : AppCompatActivity() {
         editRaceListener()
         addClassListener()
         changePortraitListener()
+        characterService = CharacterService(this)
     }
 
     private fun changePortraitListener() {
         find<ImageView>(R.id.iv_portrait).setOnClickListener {
             intentEditPortraitActivity()
         }
-
         find<TextView>(R.id.tv_change_portrait).setOnClickListener {
             intentEditPortraitActivity()
         }
-
     }
 
     private fun intentEditPortraitActivity() {
@@ -61,7 +59,7 @@ class EditCharacterActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        id = intent.getStringExtra(ID)
+        setId(intent)
         showCharacter()
         super.onResume()
     }
@@ -84,8 +82,7 @@ class EditCharacterActivity : AppCompatActivity() {
      * Get fields from the xml and updates the character.
      */
     private fun updateCharacter() {
-        val service = CharacterService(this)
-        val characterDto = service.get(id)
+        val characterDto = characterService.get(id)
 
         with(characterDto) {
             name = find<EditText>(R.id.et_character_name).text.toString()
@@ -103,11 +100,11 @@ class EditCharacterActivity : AppCompatActivity() {
             hair = find<EditText>(R.id.et_character_hair).text.toString()
         }
 
-        service.update(characterDto)
+        characterService.update(characterDto)
     }
 
     private fun showCharacter() {
-        val characterDto = CharacterService(this).get(id)
+        val characterDto = characterService.get(id)
 
         with(characterDto){
             find<EditText>(R.id.et_character_name).textString(name)
@@ -126,12 +123,18 @@ class EditCharacterActivity : AppCompatActivity() {
             find<ImageView>(R.id.iv_portrait).setImageResource(portrait)
         }
 
-        find<EditText>(R.id.tv_character_race).textString(RaceService(this).get(characterDto.raceId).name)
+        showRace(characterDto)
+        showClasses()
+    }
 
+    private fun showClasses() {
         val classesView = find<ListView>(R.id.lv_classes)
         classesView.adapter = EditCharacterClassAdapter(this, CharacterClassesService(this).get(id))
         setListViewHeight(classesView)
+    }
 
+    private fun showRace(characterDto: CharacterDto) {
+        find<EditText>(R.id.tv_character_race).textString(RaceService(this).get(characterDto.raceId).name)
     }
 
 }

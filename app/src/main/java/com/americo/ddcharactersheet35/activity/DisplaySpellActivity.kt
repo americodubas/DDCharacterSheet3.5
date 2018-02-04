@@ -1,19 +1,20 @@
 package com.americo.ddcharactersheet35.activity
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.service.SpellService
 import com.americo.ddcharactersheet35.util.find
 
-class DisplaySpellActivity : AppCompatActivity() {
+class DisplaySpellActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_display_spell)
+        setId(intent)
 
-        val spell = SpellService(this).get(intent.getStringExtra("id"))
+        val spell = SpellService(this).get(id)
 
         find<TextView>(R.id.tv_spell_name).text = spell.name
         find<TextView>(R.id.tv_spell_school).text = spell.school

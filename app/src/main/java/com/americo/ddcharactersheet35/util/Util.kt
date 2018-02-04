@@ -52,6 +52,34 @@ val portraitsName = arrayListOf("Barbute", "Battle Gear", "Black Knight Helm",
         "Tiara", "Viking Helmet", "Visor Helm",
         "Warlock Hood")
 
+
+private val piecesValues = arrayOf(1000, 100, 10, 1)
+private val piecesNames = arrayOf(" PP ", " GP ", " SP ", " CP ")
+
+/**
+ * Convert an long to D&D currency (copper, silver, gold, platinum)
+ * Table to Exchange Value	CP		SP		GP		PP
+ * Copper piece (cp) =		1		1/10	1/100	1/1,000
+ * Silver piece (sp) =		10		1		1/10	1/100
+ * Gold piece (gp) =		100		10		1		1/10
+ * Platinum piece (pp) =	1,000	100		10		1
+ */
+fun convertToDDPieces(l: Long): String {
+    if (l <= 0) return "0"
+
+    val pieces = StringBuilder()
+    var i = 0
+    var rest = l
+    piecesValues.forEach {
+        val amount = rest / it
+        if (amount > 0) pieces.append(amount.toString() + piecesNames[i])
+        rest %= it
+        i++
+    }
+    return pieces.toString()
+}
+
+
 /**
  * Shortcut to create an [Intent] and call startActivity()
  */
@@ -65,6 +93,7 @@ inline fun <reified  T> Activity.startWithId(id: String) {
 /**
  * Shortcut to create an [Intent] and call startActivity()
  */
+@Suppress("unused")
 inline fun <reified  T> Fragment.startWithId(id: String) {
     startActivity(
             Intent(this.context, T::class.java)

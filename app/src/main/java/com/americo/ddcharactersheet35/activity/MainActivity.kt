@@ -13,12 +13,14 @@ import com.americo.ddcharactersheet35.util.startWithId
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var characterService: CharacterService
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         CheckDatabase(this)
-
+        characterService = CharacterService(this)
         newCharacterListener()
     }
 
@@ -28,11 +30,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Creates a listener to insert a new character and starts the [CharacterActivity] with the new id.
+     * Creates a listener on [R.id.bt_new_character] to insert a new character
+     * and starts the [CharacterActivity] with the new id.
      */
     private fun newCharacterListener() {
         find<Button>(R.id.bt_new_character).setOnClickListener{
-            startWithId<CharacterActivity>(CharacterService(this).insertEmpty().toString())
+            startWithId<CharacterActivity>(characterService.insertEmpty().toString())
         }
     }
 
@@ -40,6 +43,6 @@ class MainActivity : AppCompatActivity() {
      * Show all characters on the [R.id.gv_character].
      */
     private fun showCharacters(){
-        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, CharacterService(this).getAll())
+        find<GridView>(R.id.gv_character).adapter = CharacterAdapter(this, characterService.getAll())
     }
 }

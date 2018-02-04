@@ -2,21 +2,18 @@ package com.americo.ddcharactersheet35.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.dto.ClassesDto
 import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.optionSaveSelected
 
-class EditClassesActivity : AppCompatActivity() {
+class EditClassesActivity : BaseActivity() {
 
-    companion object {
-        lateinit var id: String
-        lateinit var classes_id: String
-        lateinit var classes: List<ClassesDto>
-    }
+    private lateinit var classes_id: String
+    private lateinit var classes: List<ClassesDto>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +32,7 @@ class EditClassesActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        id = intent.getStringExtra("id")
+        setId(intent)
         //TODO i think i should receive a characterClass not the class it self
         //TODO not used, delete later
         classes_id = intent.getStringExtra("classes_id")

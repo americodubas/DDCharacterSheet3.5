@@ -10,9 +10,11 @@ import android.widget.ListView
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.CharacterClassesAdapter
+import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.service.CharacterClassesService
 import com.americo.ddcharactersheet35.service.CharacterService
 import com.americo.ddcharactersheet35.service.RaceService
+import com.americo.ddcharactersheet35.util.ID
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.setListViewHeight
 import com.americo.ddcharactersheet35.util.textString
@@ -42,6 +44,24 @@ class CharacterFragment : Fragment() {
         }
 
         val char = CharacterService(context!!).get(id)
+
+        showCharacter(char)
+        showRace(char)
+        showClasses()
+
+    }
+
+    private fun showClasses() {
+        val classesView = find<ListView>(R.id.lv_classes)
+        classesView.adapter = CharacterClassesAdapter(context!!, CharacterClassesService(context!!).get(id))
+        setListViewHeight(classesView)
+    }
+
+    private fun showRace(char: CharacterDto) {
+        find<TextView>(R.id.tv_character_race).text = RaceService(context!!).get(char.raceId).name
+    }
+
+    private fun showCharacter(char: CharacterDto) {
         with(char) {
             find<TextView>(R.id.tv_character_name).text = name
             find<TextView>(R.id.tv_character_level).textString(level)
@@ -58,14 +78,6 @@ class CharacterFragment : Fragment() {
             find<TextView>(R.id.tv_character_hair).text = hair
             find<ImageView>(R.id.iv_portrait).setImageResource(portrait)
         }
-
-        find<TextView>(R.id.tv_character_race).text =
-                RaceService(context!!).get(char.raceId).name
-
-        val classesView = find<ListView>(R.id.lv_classes)
-        classesView.adapter = CharacterClassesAdapter(context!!, CharacterClassesService(context!!).get(id))
-        setListViewHeight(classesView)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -75,8 +87,6 @@ class CharacterFragment : Fragment() {
     }
 
     companion object {
-        const val ID = "id"
-
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

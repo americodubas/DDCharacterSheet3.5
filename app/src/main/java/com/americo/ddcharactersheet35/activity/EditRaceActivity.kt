@@ -2,7 +2,6 @@ package com.americo.ddcharactersheet35.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
@@ -12,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.dto.CharacterDto
 import com.americo.ddcharactersheet35.dto.RaceDto
 import com.americo.ddcharactersheet35.service.CharacterService
@@ -20,13 +20,11 @@ import com.americo.ddcharactersheet35.util.createToolbar
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.optionSaveSelected
 
-class EditRaceActivity : AppCompatActivity() {
+class EditRaceActivity : BaseActivity() {
 
-    companion object{
-        lateinit var id: String
-        lateinit var races: List<RaceDto>
-        lateinit var character: CharacterDto
-    }
+    private lateinit var races: List<RaceDto>
+    private lateinit var character: CharacterDto
+    private lateinit var characterService: CharacterService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +32,7 @@ class EditRaceActivity : AppCompatActivity() {
         createToolbar(getString(R.string.edit_race))
         setRaces()
         setRaceSelectListener()
+        characterService = CharacterService(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -48,7 +47,7 @@ class EditRaceActivity : AppCompatActivity() {
 
     private fun editRace() {
         character.raceId = (find<Spinner>(R.id.sp_character_race).selectedItem as (RaceDto)).id
-        CharacterService(this).update(character)
+        characterService.update(character)
     }
 
     private fun setRaces() {
@@ -74,8 +73,8 @@ class EditRaceActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        id = intent.getStringExtra("id")
-        character = CharacterService(this).get(id)
+        setId(intent)
+        character = characterService.get(id)
 
         //this will call the setRaceSelectListener to set the description
         find<Spinner>(R.id.sp_character_race).setSelection(

@@ -25,6 +25,8 @@ import com.americo.ddcharactersheet35.util.toast
  */
 class EditCharacterClassAdapter(val context: Context, private var characterClasses: List<CharacterClassesDto>): BaseAdapter() {
 
+    private lateinit var characterClassesService: CharacterClassesService
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -35,6 +37,8 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
             true -> inflater.inflate(R.layout.view_edit_character_class, parent, false)
             false -> convertView as View
         }
+
+        characterClassesService = CharacterClassesService(context)
 
         showCharacterClass(view, char)
         increaseLevelListener(view, char)
@@ -49,7 +53,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
      */
     private fun deleteListener(view: View, char: CharacterClassesDto) {
         view.findViewById<TextView>(R.id.bt_remove).setOnClickListener {
-            CharacterClassesService(context).delete(char)
+            characterClassesService.delete(char)
             characterClasses = characterClasses.minus(char)
             changeCharacterLevel(char.level * -1)
             notifyDataSetChanged()
@@ -73,7 +77,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
         view.findViewById<TextView>(R.id.tv_decrease).setOnClickListener {
             try {
                 view.findViewById<TextView>(R.id.tv_level).text =
-                        CharacterClassesService(context).decreaseLevel(char).level.toString()
+                        characterClassesService.decreaseLevel(char).level.toString()
                 changeCharacterLevel(-1)
             }catch (e: CannotDecreaseCharacterClassesLevel){
                 toast(context, context.getString(R.string.cannot_decrease_level))
@@ -87,7 +91,7 @@ class EditCharacterClassAdapter(val context: Context, private var characterClass
     private fun increaseLevelListener(view: View, char: CharacterClassesDto) {
         view.findViewById<TextView>(R.id.tv_increase).setOnClickListener {
             view.findViewById<TextView>(R.id.tv_level).text =
-                    CharacterClassesService(context).increaseLevel(char).level.toString()
+                    characterClassesService.increaseLevel(char).level.toString()
             changeCharacterLevel(1)
         }
     }

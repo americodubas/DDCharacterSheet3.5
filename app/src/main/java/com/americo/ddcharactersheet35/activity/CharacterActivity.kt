@@ -4,28 +4,21 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.view.ViewPager
-import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.adapter.TabAdapter
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.service.CharacterService
-import com.americo.ddcharactersheet35.util.SlidingTabLayout
-import com.americo.ddcharactersheet35.util.createToolbar
-import com.americo.ddcharactersheet35.util.find
-import com.americo.ddcharactersheet35.util.startWithId
+import com.americo.ddcharactersheet35.util.*
 
-class CharacterActivity : AppCompatActivity() {
-
-    companion object{
-        lateinit var id: String
-    }
+class CharacterActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_character)
 
-        id = intent.getStringExtra("id")
+        setId(intent)
         createSlidingTab()
     }
 
@@ -38,13 +31,12 @@ class CharacterActivity : AppCompatActivity() {
      * Creates the sliding tab on the [R.id.vp_page].
      */
     private fun createSlidingTab() {
-        val viewPager = find<ViewPager>(R.id.vp_page)
-        viewPager.adapter = TabAdapter(supportFragmentManager, id)
+        find<ViewPager>(R.id.vp_page).adapter = TabAdapter(supportFragmentManager, id)
 
         val slidingTab = find<SlidingTabLayout>(R.id.st_tabs)
         slidingTab.setDistributeEvenly(true)
         slidingTab.setSelectedIndicatorColors(ContextCompat.getColor(this, R.color.colorAccent))
-        slidingTab.setViewPager(viewPager)
+        slidingTab.setViewPager(find(R.id.vp_page))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,20 +52,20 @@ class CharacterActivity : AppCompatActivity() {
      * If [R.id.it_settings] was clicked it will start the new ?.
      */
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        return when (item?.itemId) {
             R.id.it_edit -> {
                 startWithId<EditCharacterActivity>(id)
-                return true
+                true
             }
             R.id.it_change_char -> {
                 startActivity( Intent(this, MainActivity::class.java) )
-                return true
+                true
             }
             R.id.it_settings -> {
                 print("settings!")
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 }

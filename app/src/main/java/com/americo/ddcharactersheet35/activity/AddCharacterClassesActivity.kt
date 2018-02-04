@@ -2,13 +2,13 @@ package com.americo.ddcharactersheet35.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.text.Html
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.dto.CharacterClassesDto
 import com.americo.ddcharactersheet35.dto.ClassesDto
 import com.americo.ddcharactersheet35.service.CharacterClassesService
@@ -17,18 +17,17 @@ import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.optionSaveSelected
 import com.americo.ddcharactersheet35.util.textString
 
-class AddCharacterClassesActivity : AppCompatActivity() {
+class AddCharacterClassesActivity : BaseActivity() {
 
-    companion object{
-        lateinit var id: String
-        lateinit var classes: List<ClassesDto>
-    }
+    private lateinit var classes: List<ClassesDto>
+    private lateinit var characterClassesService: CharacterClassesService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_character_class)
         createToolbar(getString(R.string.add_class))
         setClassesSelectListener()
+        characterClassesService = CharacterClassesService(this)
     }
 
     private fun setClassesSelectListener() {
@@ -62,12 +61,12 @@ class AddCharacterClassesActivity : AppCompatActivity() {
         characterClassesDto.classesId = (find<Spinner>(R.id.sp_class).selectedItem as (ClassesDto)).id
         characterClassesDto.level = find<EditText>(R.id.et_level).text.toString().toInt()
 
-        CharacterClassesService(this).insert(characterClassesDto)
+        characterClassesService.insert(characterClassesDto)
     }
 
     override fun onResume() {
         super.onResume()
-        id = intent.getStringExtra("id")
+        setId(intent)
         setNotUsedClasses()
         setDefaultLevel()
     }
@@ -77,11 +76,15 @@ class AddCharacterClassesActivity : AppCompatActivity() {
     }
 
     private fun setNotUsedClasses() {
-        classes = CharacterClassesService(this).getNotUsedClasses(id)
+        classes = characterClassesService.getNotUsedClasses(id)
 
         find<Spinner>(R.id.sp_class).adapter =
                 ArrayAdapter<ClassesDto>(this,R.layout.support_simple_spinner_dropdown_item, classes)
 
+        showClassDescription()
+    }
+
+    private fun showClassDescription() {
         find<TextView>(R.id.tv_description).text = Html.fromHtml(classes.first().description)
     }
 }

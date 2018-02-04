@@ -11,6 +11,7 @@ import android.widget.TextView
 import com.americo.ddcharactersheet35.R
 import com.americo.ddcharactersheet35.activity.CharacterActivity
 import com.americo.ddcharactersheet35.dto.CharacterDto
+import com.americo.ddcharactersheet35.util.ID
 
 /**
  * Created by Americo on 27/05/2017.
@@ -24,9 +25,8 @@ class CharacterAdapter(val context: Context, private val characters: List<Charac
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View
 
-        view = when(convertView){
+        val view = when(convertView){
             null -> inflater.inflate(R.layout.view_character, parent, false)
             else -> convertView
         }
@@ -46,7 +46,7 @@ class CharacterAdapter(val context: Context, private val characters: List<Charac
     private fun chooseCharacterListener(view: View, position: Int) {
         view.findViewById<ImageView>(R.id.iv_character).setOnClickListener {
             val intent = Intent(context, CharacterActivity::class.java)
-            intent.putExtra("id", characters[position].id.toString())
+            intent.putExtra(ID, characters[position].id.toString())
             context.startActivity(intent)
         }
     }

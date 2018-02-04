@@ -1,19 +1,18 @@
 package com.americo.ddcharactersheet35.activity
 
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ListView
 import android.widget.SimpleAdapter
 import android.widget.TextView
 import com.americo.ddcharactersheet35.R
+import com.americo.ddcharactersheet35.base.BaseActivity
 import com.americo.ddcharactersheet35.model.Spell
 import com.americo.ddcharactersheet35.util.find
 import com.americo.ddcharactersheet35.util.startWithId
 
-class DisplaySpellListActivity : AppCompatActivity() {
+class DisplaySpellListActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
