@@ -53,9 +53,6 @@ val portraitsName = arrayListOf("Barbute", "Battle Gear", "Black Knight Helm",
         "Warlock Hood")
 
 
-private val piecesValues = arrayOf(1000, 100, 10, 1)
-private val piecesNames = arrayOf(" PP ", " GP ", " SP ", " CP ")
-
 /**
  * Convert an long to D&D currency (copper, silver, gold, platinum)
  * Table to Exchange Value	CP		SP		GP		PP
@@ -64,21 +61,50 @@ private val piecesNames = arrayOf(" PP ", " GP ", " SP ", " CP ")
  * Gold piece (gp) =		100		10		1		1/10
  * Platinum piece (pp) =	1,000	100		10		1
  */
-fun convertToDDPieces(l: Long): String {
-    if (l <= 0) return "0"
+
+private val piecesValues = arrayOf(1000, 100, 10, 1)
+private val piecesNames = arrayOf(" PP", " GP", " SP", " CP")
+
+fun convertLongToPieces(value: Long): String {
+    if (value <= 0) return "0"
 
     val pieces = StringBuilder()
     var i = 0
-    var rest = l
+    var rest = value
     piecesValues.forEach {
         val amount = rest / it
-        if (amount > 0) pieces.append(amount.toString() + piecesNames[i])
+        if (amount > 0) pieces.append(amount.toString() + piecesNames[i] + ",")
         rest %= it
         i++
     }
-    return pieces.toString()
+    return removeLastComma(pieces.toString())
 }
 
+fun removeLastComma(s: String): String {
+    return when(s.last() == ','){
+        true -> s.slice(0..s.length-2)
+        false -> s
+    }
+}
+
+private fun multiply(s: String): Int{
+    var i = 0
+    val piece = piecesNames.find {
+        i++
+        s.contains(it)
+    }
+    return s.replace(piece!!,"").toInt() * piecesValues[i-1]
+}
+
+fun convertPiecesToLong(pieces: String): Long {
+    if (pieces.length == 1) return 0
+
+    var value = 0
+    pieces.split(",").forEach {
+        value += multiply(it)
+    }
+    return value.toLong()
+}
 
 /**
  * Shortcut to create an [Intent] and call startActivity()
